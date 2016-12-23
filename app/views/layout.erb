@@ -39,7 +39,7 @@
                 <li><a href="/register">Edit <%= SessionHelpers.current_user(session).name %></a></li>
                 <li><a href="#">My Lists</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="/login">Log Out</a></li>
+                <li><a href="/logout">Log Out</a></li>
               <% else %>
                 <li><a href="/register">Create Account</a></li>
                 <li role="separator" class="divider"></li>
@@ -48,8 +48,9 @@
             </ul>
           </li>
         </ul>
-
-        <button type="button" class="btn btn-default navbar-btn navbar-right"><a href="/list/new">New List</a></button>
+        <% if SessionHelpers.is_logged_in?(session) %>
+          <button type="button" class="btn btn-default navbar-btn navbar-right"><a href="/list/new"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> New List</a></button>
+        <% end %>
       </div>  
     </nav>
 

@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 		user = User.new(params[:user])
 		if user.save
 			session[:user_id] = user.id
-			binding.pry
 			redirect to "/users"
 		else
 			erb :"users/new.html"
