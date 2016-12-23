@@ -4,5 +4,11 @@
 }
 
 img.media-object {
-	max-width: 128px;
+	width: 128px;
+	height: 128px;
+	object-fit: cover;
+}
+
+.input-group {
+	margin: 20px 0;
 }

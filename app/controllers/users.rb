@@ -7,4 +7,14 @@ class UsersController < ApplicationController
 	get "/register" do
 		erb :"users/new.html"
 	end
+
+	post "/users/new" do
+		# {"user"=>{"name"=>"Luke", "surname"=>"Skywalker", "description"=>"I'm son of a Jedi turned Sith, how cool is that?"}}
+		user = User.new(params[:user])
+		if user.save
+			redirect to "/users"
+		else
+			erb :"users/new.html"
+		end
+	end
 end

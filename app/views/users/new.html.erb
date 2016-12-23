@@ -1,1 +1,22 @@
-<h1>Create Your Account</h1>
+<h1>Create Your User Account</h1>
+
+<form action="/users/new" method="POST" >
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon1">First Name</span>
+		<input class="form-control" type="text" name="user[name]" placeholder="First Name" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon2">Surname</span>
+		<input class="form-control" type="text" name="user[surname]" placeholder="Surname" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon3">Profile Intro</span>
+		<input class="form-control" type="text" name="user[description]" placeholder="Write a few lines about yourself." aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon4">Profile Picture URL</span>
+		<input class="form-control" type="text" name="user[picture_url]" placeholder="Put the URL of your profile picture" aria-describedby="basic-addon1">
+	</div>		
+	<input class="btn btn-default" type="submit" value="Submit">
+</form>
+
