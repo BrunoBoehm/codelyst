@@ -1,1 +1,17 @@
 <h1>Login to your account</h1>
+
+<form action="/login" method="POST" >
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon1">First Name</span>
+		<input class="form-control" type="text" name="name" placeholder="First Name" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon2">Surname</span>
+		<input class="form-control" type="text" name="surname" placeholder="Surname" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon5">Password</span>
+		<input class="form-control" type="password" name="password" placeholder="What's your password?" aria-describedby="basic-addon1">
+	</div>				
+	<input class="btn btn-success" type="submit" value="Log In">
+</form>
