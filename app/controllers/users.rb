@@ -25,7 +25,11 @@ class UsersController < ApplicationController
 	# edit
 	get "/users/:id/edit" do
 		@user = User.find(params[:id])
-		erb :'users/edit.html'
+		if true ############
+			erb :'users/edit.html'
+		else
+			redirect "/users"
+		end
 	end
 
 	# update

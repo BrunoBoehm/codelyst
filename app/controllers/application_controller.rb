@@ -1,6 +1,7 @@
 class ApplicationController < Sinatra::Base
 	# required by sinatra-activerecord gem
 	register Sinatra::ActiveRecordExtension
+	helpers Sinatra::SessionHelpers
 
 	configure do
 	  enable :sessions	

@@ -1,9 +1,13 @@
-class SessionHelpers
-	def self.current_user(session)
-		@user = User.find_by(id: session[:user_id])
+module Sinatra
+	module SessionHelpers
+		def current_user
+			@user = User.find_by(id: session[:user_id])
+		end
+
+		def logged_in?
+			!!session[:user_id]
+		end
 	end
 
-	def self.is_logged_in?(session)
-		!!session[:user_id]
-	end
+	helpers SessionHelpers
 end
