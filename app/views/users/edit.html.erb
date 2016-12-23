@@ -1,5 +1,5 @@
 <h1>Edit Your User Account</h1>
-<p>This is what your current account look like.</p>
+<p>This is what your account currently look like.</p>
 <div class="media">
   <div class="media-left">
       <img class="media-object" src="<%= @user.picture_url %>" alt="<%= @user.full_name %>">
@@ -9,7 +9,7 @@
     <%= @user.description %>
   </div>
 </div>
-<br>
+<hr>
 <p>Edit your account using the form below</p>
 <form action="/users/<%= @user.id %>" method="POST" >
 	<input type="hidden" name="_method" value="PATCH" >
@@ -30,5 +30,13 @@
 		<input class="form-control" type="text" name="user[picture_url]" aria-describedby="basic-addon1" value="<%= @user.picture_url %>">
 	</div>		
 	<input class="btn btn-default" type="submit" value="Submit">
+</form>
+
+<hr>
+
+<p>You can also delete your account</p>
+<form action="/users/<%= @user.id %>" method="POST">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="submit" class="btn btn-danger" value="Delete Account">
 </form>
 

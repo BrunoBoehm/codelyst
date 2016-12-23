@@ -26,7 +26,16 @@ class UsersController < ApplicationController
 	patch "/users/:id" do
 		user = User.find(params[:id])
 		if user.update(params[:user])
-			redirect to :"users"
+			redirect to "/users/#{user.id}/edit"
+		else
+			erb :'users/edit.html'
+		end
+	end
+
+	delete "/users/:id" do
+		user = User.find(params[:id])
+		if user.destroy
+			redirect to "/users"
 		else
 			erb :'users/edit.html'
 		end
