@@ -6,5 +6,7 @@ end
 
 use Rack::MethodOverride
 
-
+use ItemsController
+use ListsController
+use VersionsController
 run ApplicationController
