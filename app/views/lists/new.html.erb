@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+		<h1>Create a Lyst</h1>
+		<div class="alert alert-info" role="alert">
+			<p>Howdy <%= current_user.name %>, let's create a lyst!</p>
+			<p>A lyst can be about:</p>
+			<ul>
+				<li>A recipe: how to do something in code</li>
+				<li>A learning on a specific code topic</li>
+				<li>A process you use when coding</li>
+			</ul>
+		</div>
+
+		<form action="/lists/new" method="POST">
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Title</span>
+				<input class="form-control" type="text" name="list[title]" placeholder="Lyst Title" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Description</span>
+				<input class="form-control" type="text" name="list[description]" placeholder="Lyst Description" aria-describedby="basic-addon1">
+			</div>
+			<input type="hidden" name="user_id" value="<%= current_user.id %>">
+			<input class="btn btn-success" type="submit" value="Create Lyst">
+		</form>
+
+	</div>
+</div>

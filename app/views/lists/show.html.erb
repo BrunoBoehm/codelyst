@@ -1,0 +1,18 @@
+<div class="alert alert-success" role="alert">
+	<p>Congratulation you just created a lyst. What's next?</p>
+	<ul>
+		<li>Below, you'll be able to propose your solution</li>
+		<li>Other users will be able to propose other versions</li>
+		<li>And of course don't hesitate to propose alternative versions too.</li>
+	</ul>
+</div>
+
+<h1><%= @list.title %></h1>
+<p><%= @list.description %></p>
+
+<h4>Contributors to this lyst</h4>
+<ul>
+	<% @contributors.each do |contributor| %>
+		<li><%= contributor.full_name %>, last update on <%= contributor.versions.last.updated_at.strftime("%b %d, %Y - %H:%M UTC") %></li>
+	<% end %>
+</ul>
