@@ -23,5 +23,12 @@ class UsersController < ApplicationController
 		erb :'users/edit.html'
 	end
 
-	
+	patch "/users/:id" do
+		user = User.find(params[:id])
+		if user.update(params[:user])
+			redirect to :"users"
+		else
+			erb :'users/edit.html'
+		end
+	end
 end
