@@ -3,4 +3,8 @@ class UsersController < ApplicationController
 		@users = User.all
 		erb :"users/index.html"
 	end
+
+	get "/register" do
+		erb :"users/new.html"
+	end
 end
