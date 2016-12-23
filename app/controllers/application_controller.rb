@@ -9,6 +9,6 @@ class ApplicationController < Sinatra::Base
 
 
 	get "/" do
-		"Hello World"
+		redirect to "/lists"
 	end
 end

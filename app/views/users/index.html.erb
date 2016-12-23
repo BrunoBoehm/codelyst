@@ -1,1 +1,18 @@
-<h1>Users</h1>
+<h1>Users (<%= @users.count %>)</h1>
+<p>This is a list of all users of CodeLyst</p>
+
+<% @users.each do |user| %>
+	<div class="media">
+	  <div class="media-left">
+	    <a href="#">
+	      <img class="media-object" src="<%= user.picture_url %>" alt="<%= user.full_name %>">
+	    </a>
+	  </div>
+	  <div class="media-body">
+	    <h4 class="media-heading"><%= user.full_name %></h4>
+	    <%= user.description %>
+	  </div>
+	</div>
+<% end %>
+
+<hr>

@@ -1,1 +1,13 @@
-index.html.erb
+<h1>All items (<%= @items.count %>)</h1>
+<p>This is a list of all single items contained in lists</p>
+
+<% @items.each do |item| %>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title"><%= item.title %></h2>
+		</div>
+		<div class="panel-body">
+		    <%= item.description %>
+		</div>
+	</div>
+<% end %>

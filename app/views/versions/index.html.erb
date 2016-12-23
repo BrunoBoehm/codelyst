@@ -1,1 +1,12 @@
-index.html.erb
+<h1>Versions (<%= @versions.count %>)</h1>
+
+<% @versions.each do |version| %>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title"><%= version.title %></h2>
+		</div>
+		<div class="panel-body">
+		    <%= version.description %>
+		</div>
+	</div>
+<% end %>
