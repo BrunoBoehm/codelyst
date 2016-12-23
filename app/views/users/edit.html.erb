@@ -9,7 +9,9 @@
     <%= @user.description %>
   </div>
 </div>
+
 <hr>
+
 <p>Edit your account using the form below</p>
 <form action="/users/<%= @user.id %>" method="POST" >
 	<input type="hidden" name="_method" value="PATCH" >

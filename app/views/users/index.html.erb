@@ -1,5 +1,5 @@
 <h1>Users (<%= @users.count %>)</h1>
-<p>This is a list of all users of CodeLyst</p>
+<p>This is a list of all users of CodeLyst, currently logged-in as <%= SessionHelpers.current_user(session).full_name %> (user_id: <%= session[:user_id] %>)</p>
 
 <% @users.each do |user| %>
 	<div class="media">
@@ -10,6 +10,9 @@
 	  </div>
 	  <div class="media-body">
 	    <h4 class="media-heading"><%= user.full_name %></h4>
+	    <span class="label label-info">Id: <%= user.id %></span> 
+	    <span class="label label-default">Lists: <%= user.lists.count %></span> 
+	    <span class="label label-success">Created: <%= user.created_at.strftime("%b %d, %Y") %></span>
 	    <p><%= user.description %></p>
 	    <button type="button" class="btn btn-default"><a href="/users/<%= user.id %>/edit">Edit</a></button>
 	  </div>

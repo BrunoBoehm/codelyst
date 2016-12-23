@@ -1,28 +1,35 @@
 class UsersController < ApplicationController
+
+	# index 
 	get "/users" do
 		@users = User.all
 		erb :"users/index.html"
 	end
 
+	# new
 	get "/register" do
 		erb :"users/new.html"
 	end
 
+	# create
 	post "/users/new" do
-		# {"user"=>{"name"=>"Luke", "surname"=>"Skywalker", "description"=>"I'm son of a Jedi turned Sith, how cool is that?"}}
 		user = User.new(params[:user])
 		if user.save
+			session[:user_id] = user.id
+			binding.pry
 			redirect to "/users"
 		else
 			erb :"users/new.html"
 		end
 	end
 
+	# edit
 	get "/users/:id/edit" do
 		@user = User.find(params[:id])
 		erb :'users/edit.html'
 	end
 
+	# update
 	patch "/users/:id" do
 		user = User.find(params[:id])
 		if user.update(params[:user])
@@ -32,6 +39,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# destroy
 	delete "/users/:id" do
 		user = User.find(params[:id])
 		if user.destroy
