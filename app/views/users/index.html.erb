@@ -10,9 +10,8 @@
 	  </div>
 	  <div class="media-body">
 	    <h4 class="media-heading"><%= user.full_name %></h4>
-	    <%= user.description %>
+	    <p><%= user.description %></p>
+	    <button type="button" class="btn btn-default"><a href="/users/<%= user.id %>/edit">Edit</a></button>
 	  </div>
 	</div>
 <% end %>
-
-<hr>

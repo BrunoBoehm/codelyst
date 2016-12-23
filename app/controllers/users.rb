@@ -17,4 +17,11 @@ class UsersController < ApplicationController
 			erb :"users/new.html"
 		end
 	end
+
+	get "/users/:id/edit" do
+		@user = User.find(params[:id])
+		erb :'users/edit.html'
+	end
+
+	
 end

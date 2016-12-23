@@ -1,0 +1,34 @@
+<h1>Edit Your User Account</h1>
+<p>This is what your current account look like.</p>
+<div class="media">
+  <div class="media-left">
+      <img class="media-object" src="<%= @user.picture_url %>" alt="<%= @user.full_name %>">
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= @user.full_name %></h4>
+    <%= @user.description %>
+  </div>
+</div>
+<br>
+<p>Edit your account using the form below</p>
+<form action="/users/<%= @user.id %>" method="POST" >
+	<input type="hidden" name="_method" value="PATCH" >
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon1">First Name</span>
+		<input class="form-control" type="text" name="user[name]" aria-describedby="basic-addon1" value="<%= @user.name %>" >
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon2">Surname</span>
+		<input class="form-control" type="text" name="user[surname]" aria-describedby="basic-addon1" value="<%= @user.surname %>">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon3">Profile Intro</span>
+		<input class="form-control" type="text" name="user[description]" aria-describedby="basic-addon1" value="<%= @user.description %>">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon4">Profile Picture URL</span>
+		<input class="form-control" type="text" name="user[picture_url]" aria-describedby="basic-addon1" value="<%= @user.picture_url %>">
+	</div>		
+	<input class="btn btn-default" type="submit" value="Submit">
+</form>
+
