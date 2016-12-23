@@ -30,7 +30,11 @@
 	<div class="input-group">
 		<span class="input-group-addon" id="basic-addon4">Profile Picture URL</span>
 		<input class="form-control" type="text" name="user[picture_url]" aria-describedby="basic-addon1" value="<%= @user.picture_url %>">
-	</div>		
+	</div>	
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon5">Password</span>
+		<input class="form-control" type="password" name="user[password]" placeholder="Put a safe password here" aria-describedby="basic-addon1">
+	</div>				
 	<input class="btn btn-default" type="submit" value="Submit">
 </form>
 

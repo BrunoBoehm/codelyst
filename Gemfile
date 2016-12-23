@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 gem "sinatra"
 gem "rake"
-gem 'activerecord'
-gem 'sinatra-activerecord'
+gem "activerecord"
+gem "sinatra-activerecord"
+gem "bcrypt"
 
 group :development do
 	gem "shotgun"	# no need to restart the server at every change, can start server using console "shotgun" command
