@@ -20,7 +20,9 @@
 	    <span class="label label-default">Lists: <%= user.lists.count %></span> 
 	    <span class="label label-success">Created: <%= user.created_at.strftime("%b %d, %Y - %H:%M UTC") %></span>
 	    <p><%= user.description %></p>
-	    <button type="button" class="btn btn-default"><a href="/users/<%= user.id %>/edit">Edit</a></button>
+	    <% if current_user?(user) %>
+	    	<button type="button" class="btn btn-default"><a href="/users/<%= user.id %>/edit">Edit</a></button>
+	    <% end %>
 	  </div>
 	</div>
 <% end %>

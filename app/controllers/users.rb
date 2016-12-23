@@ -8,7 +8,12 @@ class UsersController < ApplicationController
 
 	# new
 	get "/register" do
-		erb :"users/new.html"
+		if logged_in?
+			erb :"users/new.html"
+		else
+			redirect to "/login"
+		end
+		
 	end
 
 	# create
@@ -25,10 +30,14 @@ class UsersController < ApplicationController
 	# edit
 	get "/users/:id/edit" do
 		@user = User.find(params[:id])
-		if true ############
-			erb :'users/edit.html'
+		if logged_in?
+			if @user.id == current_user.id
+				erb :'users/edit.html'
+			else
+				redirect "/users"
+			end
 		else
-			redirect "/users"
+			redirect "/login"
 		end
 	end
 
@@ -45,10 +54,15 @@ class UsersController < ApplicationController
 	# destroy
 	delete "/users/:id" do
 		user = User.find(params[:id])
-		if user.destroy
-			redirect to "/users"
+		if logged_in?
+			if user.destroy
+				redirect to "/users"
+			else
+				erb :'users/edit.html'
+			end
 		else
-			erb :'users/edit.html'
+			redirect "/users"
 		end
 	end
+
 end
