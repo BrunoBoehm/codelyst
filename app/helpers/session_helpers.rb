@@ -9,7 +9,7 @@ module Sinatra
 		end
 
 		def current_user?(user)
-			current_user.id == user.id
+			current_user && current_user.id == user.id
 		end
 	end
 
