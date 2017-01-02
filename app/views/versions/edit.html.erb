@@ -1,0 +1,22 @@
+<h1>Edit Version: "<%= @version.title ||= "No title yet for this version" %>"</h1>
+<h2>List: "<%= @list.title %>"</h2>
+
+<p>Form to edit title and description</p>
+
+<hr>
+
+<% if !@items.empty? %>
+	<h3>Edit items for this list:</h3>
+	<% @items.each do |item| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 class="panel-title"><a href="/lists/<%= list.id %>"><%= item.title %></a></h2>
+			</div>
+			<div class="panel-body">
+				<p><%= item.description %></p>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	<p>No items for this version yet.</p>
+<% end %>

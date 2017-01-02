@@ -1,10 +1,12 @@
 class ListsController < ApplicationController
 
+	# index
 	get "/lists" do
 		@lists = List.all
 		erb :"lists/index.html"
 	end
 
+	#  new
 	get "/lists/new" do
 		if logged_in?
 			erb :"lists/new.html"
@@ -13,12 +15,16 @@ class ListsController < ApplicationController
 		end
 	end
 
+	# create
 	post "/lists/new" do
 		if logged_in? && current_user
 			list = current_user.lists.build(params[:list])
 			if list.save
-				Version.create(user_id: current_user.id, list_id: list.id)
-				redirect to "/lists/#{list.id}"
+				# create the associated version join model instance
+				version = Version.create(user_id: current_user.id, list_id: list.id)
+				# a new list was just created, now for that list's first version we want to add items
+				redirect to "/lists/#{list.id}/create"
+				# this route should only be accessible to the creator of the list (or the creator of the list's first version)
 			else
 				erb :"lists/new.html"
 			end
@@ -27,6 +33,7 @@ class ListsController < ApplicationController
 		end
 	end
 
+	# show
 	get "/lists/:id" do
 		@list = List.find_by(id: params[:id])
 		if @list
@@ -36,4 +43,11 @@ class ListsController < ApplicationController
 			redirect "/lists"
 		end
 	end
+
+	# index 1 list's versions
+	get "/lists/:id/versions" do
+		@list = List.find(params[:id])
+		@versions = @list.versions.all
+		erb :"lists/versions.html"		
+	end	
 end

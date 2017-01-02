@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+		<h1>All versions (<%= @versions.count %>) for list:</h1>
+		<h2><%= @list.title %></h2>
+
+
+		<% @versions.each do |version| %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title"><a href="/lists/<%= @list.id %>/versions/<%= version.id %>/edit"><%= version.title ||= "No title yet for this version" %></a></h2>
+				</div>
+				<div class="panel-body">
+					<p><%= version.description ||= "No description yet for this version" %></p>
+				</div>
+				<div class="panel-footer">
+					User: <%= version.user.name %> | user_id: <%= version.user_id %> | list_id: <%= version.list_id %>
+				</div>
+			</div>
+		<% end  %>
+	</div>
+</div>

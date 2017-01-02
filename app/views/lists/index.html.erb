@@ -1,12 +1,25 @@
-<h1>All lists (<%= @lists.count %>)</h1>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
 
-<% @lists.each do |list| %>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h2 class="panel-title"><%= list.title %></h2>
-		</div>
-		<div class="panel-body">
-		    <%= list.description %>
-		</div>
+		<h1>All lists (<%= @lists.count %>)</h1>
+
+		<% @lists.each do |list| %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title"><a href="/lists/<%= list.id %>"><%= list.title %></a></h2>
+				</div>
+				<div class="panel-body">
+					<p>
+					<% list.users.each do |user| %>
+						<span class="label label-info"><%= user.full_name %></span>
+					<% end %>
+					</p>
+					<p><%= list.description %></p>
+				</div>
+				<div class="panel-footer">
+					<a href="/lists/<%= list.id %>/versions">Show all versions</a>
+				</div>
+			</div>
+		<% end %>
 	</div>
-<% end %>
+</div>

@@ -3,4 +3,5 @@ class ItemsController < ApplicationController
 		@items = Item.all
 		erb :"items/index.html"
 	end
+
 end

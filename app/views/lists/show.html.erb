@@ -1,14 +1,37 @@
-<div class="alert alert-success" role="alert">
-	<p>Congratulation you just created a lyst. What's next?</p>
-	<ul>
-		<li>Below, you'll be able to propose your solution</li>
-		<li>Other users will be able to propose other versions</li>
-		<li>And of course don't hesitate to propose alternative versions too.</li>
-	</ul>
-</div>
-
 <h1><%= @list.title %></h1>
 <p><%= @list.description %></p>
+<br>
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" class="active"><a href="#">Version 1</a></li>
+  <li role="presentation"><a href="#">2nd best version</a></li>
+  <li role="presentation"><a href="#">3rd best version</a></li>
+</ul>
+<br>
+<% @list.versions.first.items.each do |item| %>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  	<h3 class="panel-title"><%= item.title %></h3>
+	  	<span class="label label-info"><%= item.path.blank? ? "app/example_path.erb" : item.path %></span>
+	  </div>
+	  <div class="panel-body">
+	  	<p><%= item.description %></p>
+	    <p><%= item.code %></p>
+	  </div>
+	</div>
+<% end %>
+<p><a href="/">Edit this version</a> | <a href="">Add a new version</a></p>
+
+
+<hr>
+<h4>Available versions (<%= @list.versions.count %>)</h4>
+<ul>
+	<% @list.versions.each do |version| %>
+		<li><%= version.title ||= "Base" %></li>
+	<% end %>
+	<li><a href="">Add a new version</a></li>
+</ul>
+
+<hr>
 
 <h4>Contributors to this lyst</h4>
 <ul>
@@ -16,3 +39,5 @@
 		<li><%= contributor.full_name %>, last update on <%= contributor.versions.last.updated_at.strftime("%b %d, %Y - %H:%M UTC") %></li>
 	<% end %>
 </ul>
+
+<hr>
