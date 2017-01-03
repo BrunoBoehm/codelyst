@@ -6,12 +6,19 @@ class VersionsController < ApplicationController
 		erb :"versions/index.html"
 	end
 
-	# edit the first version of a list by working directly on its items
+	### alternative: edit the first version of a list by adding items in bulk
 	get "/lists/:id/create" do
 		@list = List.find_by(id: params[:id])
 		@version = @list.versions.first
 		@items = 10.times.collect{@version.items.build}
-		erb :"versions/init.html"
+		erb :"versions/create.html"
+	end
+
+	### alternative: edit the first version of a list by adding items one at a time
+	get "/lists/:id/add-items" do
+		@list = List.find_by(id: params[:id])
+		@version = @list.versions.first
+		erb :"versions/add-items.html"
 	end
 
 	# create a list (create the first version of the list and nested items)
@@ -22,6 +29,19 @@ class VersionsController < ApplicationController
 			version.items.create(params) unless params[:title].empty?
 		end
 		redirect "/lists/#{list.id}"
+	end
+
+	# create the first item of a list
+	post "/list/:id" do
+		binding.pry
+		list = List.find(params[:id])
+		version = list.versions.first
+		item = version.items.build(params[:item])
+		if item.save
+			redirect "/lists/#{list.id}"
+		else
+			erb :"versions/add-items.html"
+		end	
 	end
 
 	get '/lists/:list_id/versions/:id/edit' do

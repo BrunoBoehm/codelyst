@@ -23,7 +23,8 @@ class ListsController < ApplicationController
 				# create the associated version join model instance
 				version = Version.create(user_id: current_user.id, list_id: list.id)
 				# a new list was just created, now for that list's first version we want to add items
-				redirect to "/lists/#{list.id}/create"
+				redirect to "/lists/#{list.id}/add-items"
+				# redirect to "/lists/#{list.id}/create" is the alternate route
 				# this route should only be accessible to the creator of the list (or the creator of the list's first version)
 			else
 				erb :"lists/new.html"

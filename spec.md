@@ -12,32 +12,10 @@ Specs:
 - [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [x] You have a large number of small Git commits
+- [x] Your commit messages are meaningful
+- [x] You made the changes in a commit that relate to the commit message
+- [x] You don't include changes in a commit that aren't related to the commit message
 
 
-# TODO
 
-create the models, set them up, put validations and test in tux
-=> unit test
-
-create the controllers
-=> controller test
-
-create the views, for CRUD actions (method override already in config.ru)
-=> feature tests
-
-add controllers to config.ru
-
-enable sessions
-enable user login with BCcrypt!
-set up a current_user helper
-
-set up for custom access to CRUD from users
-
-set up for use of bootstrap
-jQuery magic
-
-set up for push to heroku

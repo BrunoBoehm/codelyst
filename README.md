@@ -5,7 +5,7 @@ This app is meant to let users
 - each list is initiated with a first original version from the user who create the list
 - other users can also contribute to the list by submitting another version: it is another way to make the recipe
 
-## To Install it: 
+## Installation
 1. Fork it
 2. Clone it on your local machine
 3. Get into the local folder in your terminal and run `bundle install` to install the necessary gems
