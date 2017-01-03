@@ -51,7 +51,18 @@ class VersionsController < ApplicationController
 	# create a new alternate version out of an existing list
 	get "/lists/:id/versions/new" do
 		@list = List.find(params[:id])
-		erb :"versions/show.html"
+		erb :"versions/new.html"
+	end
+
+	post "/lists/:id/versions/new" do
+		# {"version"=>{"title"=>"Second version", "description"=>"Version desc", "user_id"=>"2"}, ...}
+		list = List.find(params[:id])
+		version = list.versions.build(params[:version])
+		if version.save
+			redirect to "/lists/#{list.id}"
+		else
+			erb :"versions/new.html"
+		end
 	end
 
 	# edit a version

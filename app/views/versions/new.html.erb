@@ -1,14 +1,27 @@
-<div class="alert alert-success" role="alert">
-	<p>Thanks for proposing a new version: now add on your steps below.</p>
-</div>
-
 <h1>Title: <%= @list.title %></h1>
 <p>Description: <%= @list.description %></p>
 
-<form action="/lists/<%= @list.id %>" method="POST">
-	<% @items.each do |item|%>
-		<%= erb :"versions/partials/items.html" %>
-	<% end %>
+<div class="alert alert-success" role="alert">
+	<p>Thanks for proposing a new version:</p>
+	<ol>
+		<li>Start by explaining what's different with your version</li>
+		<li>On the next page you'll be able to add the bits of code for your version</li>
+	</ol>
+</div>
+
+<form action="/lists/<%= @list.id %>/versions/new" method="POST">
+
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon1">Title</span>
+		<input class="form-control" type="text" name="version[title]" placeholder="Version Title" aria-describedby="basic-addon1">
+	</div>
+
+	<div class="input-group">
+		<span class="input-group-addon" id="basic-addon1">Description</span>
+		<input class="form-control" type="text" name="version[description]" placeholder="Version Description" aria-describedby="basic-addon1">
+	</div>
+
+	<input type="hidden" name="version[user_id]" value="<%= current_user.id %>">
 
 	<input class="btn btn-success" type="submit" value="Create Steps">
 </form>
