@@ -22,7 +22,7 @@
 		  </div>
 		  <div class="panel-body">
 		  	<p><%= item.description %></p>
-		    <p><%= item.code %></p>
+		    <p><pre><code class="language-html"><%= h item.code %></pre></code></p>
 		  </div>
 		</div>
 	<% end %>
@@ -51,10 +51,14 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="input-group">
+<!-- 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Code</span>
 				<input class="form-control" type="text" name="item[code]" aria-describedby="basic-addon1" placeholder="Type the necessary code">
-			</div>	
+			</div> -->
+			<div class="form-group">
+				<label>Code:</label>
+				<textarea class="form-control" name="item[code]"></textarea>
+			</div>						
 		</div>
 
 	</div>	

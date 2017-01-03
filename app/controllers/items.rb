@@ -11,6 +11,13 @@ class ItemsController < ApplicationController
 		erb :"items/edit.html"
 	end
 
+	get "/lists/:list_id/versions/:version_id/items/new" do
+		@list = List.find(params[:list_id])
+		@version = Version.find(params[:version_id])
+		@items = @version.items
+		erb :"versions/add-items.html"
+	end
+
 	patch "/lists/:list_id/versions/:version_id/items/:id" do
 		@list = List.find(params[:list_id])
 		@version = Version.find(params[:version_id])
