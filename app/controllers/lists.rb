@@ -39,6 +39,7 @@ class ListsController < ApplicationController
 		@list = List.find_by(id: params[:id])
 		if @list
 			@contributors = @list.users.all
+			@versions = @list.versions.first(3)
 			erb :"lists/show.html"
 		else
 			redirect "/lists"

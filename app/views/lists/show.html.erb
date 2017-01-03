@@ -2,9 +2,9 @@
 <p><%= @list.description %></p>
 <br>
 <ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="#">Version 1</a></li>
-  <li role="presentation"><a href="#">2nd best version</a></li>
-  <li role="presentation"><a href="#">3rd best version</a></li>
+	<% @versions.each_with_index do |version, index| %>	
+	  <li role="presentation" <%= 'class="active"' if index == 1 %>><a href="#">Version <%= index +1 %></a></li>
+  	<% end %>
 </ul>
 <br>
 <% @list.versions.first.items.each do |item| %>
