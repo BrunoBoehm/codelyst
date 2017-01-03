@@ -1,0 +1,14 @@
+<div class="alert alert-success" role="alert">
+	<p>Thanks for proposing a new version: now add on your steps below.</p>
+</div>
+
+<h1>Title: <%= @list.title %></h1>
+<p>Description: <%= @list.description %></p>
+
+<form action="/lists/<%= @list.id %>" method="POST">
+	<% @items.each do |item|%>
+		<%= erb :"versions/partials/items.html" %>
+	<% end %>
+
+	<input class="btn btn-success" type="submit" value="Create Steps">
+</form>

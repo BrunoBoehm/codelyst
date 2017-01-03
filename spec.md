@@ -18,4 +18,5 @@ Confirm
 - [x] You don't include changes in a commit that aren't related to the commit message
 
 
-
+## Questions
+- How to add version id starting from 1 for each list

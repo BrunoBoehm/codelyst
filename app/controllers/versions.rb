@@ -1,4 +1,7 @@
 class VersionsController < ApplicationController
+	# the notion of version should not be part of the the URL when it's the first version
+	# then for additional versions we can make allusion to the version element in the URL
+
 
 	# index
 	get "/versions" do
@@ -6,13 +9,14 @@ class VersionsController < ApplicationController
 		erb :"versions/index.html"
 	end
 
+
 	### alternative: edit the first version of a list by adding items in bulk
-	get "/lists/:id/create" do
-		@list = List.find_by(id: params[:id])
-		@version = @list.versions.first
-		@items = 10.times.collect{@version.items.build}
-		erb :"versions/create.html"
-	end
+	# get "/lists/:id/create" do
+	# 	@list = List.find_by(id: params[:id])
+	# 	@version = @list.versions.first
+	# 	@items = 10.times.collect{@version.items.build}
+	# 	erb :"versions/create.html"
+	# end
 
 	### alternative: edit the first version of a list by adding items one at a time
 	get "/lists/:id/add-items" do
@@ -23,14 +27,14 @@ class VersionsController < ApplicationController
 	end
 
 	# create a list (create the first version of the list and nested items)
-	post "/lists/:id" do
-		list = List.find(params[:id])
-		version = list.versions.first
-		params[:version][:item].each do |params|
-			version.items.create(params) unless params[:title].empty?
-		end
-		redirect "/lists/#{list.id}"
-	end
+	# post "/lists/:id" do
+	# 	list = List.find(params[:id])
+	# 	version = list.versions.first
+	# 	params[:version][:item].each do |params|
+	# 		version.items.create(params) unless params[:title].empty?
+	# 	end
+	# 	redirect "/lists/#{list.id}"
+	# end
 
 	# create the first item of a list
 	post "/list/:id" do
@@ -44,11 +48,18 @@ class VersionsController < ApplicationController
 		end	
 	end
 
+	# create a new alternate version out of an existing list
+	get "/lists/:id/versions/new" do
+		@list = List.find(params[:id])
+		erb :"versions/show.html"
+	end
+
+	# edit a version
 	get '/lists/:list_id/versions/:id/edit' do
     	@list = List.find(params[:list_id])
     	@version = Version.find(params[:id])
     	@items = @version.items.all
-    	# how to auto increment from 1 instead of version id ?
+    	# QUESTION: how to auto increment from 1 instead of version id (guess: new column) ?
     	erb :"versions/edit.html"
   	end
 end

@@ -1,0 +1,39 @@
+<h3>You're now editing: </h3>
+<ol class="breadcrumb">
+  <li><a href="/lists/<%= @list.id %>"><%= @list.title %></a></li>
+  <li><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>"><%= @version.title ||= "Base version" %></a></li>
+  <li class="active"><%= @item.title %></li>
+</ol>
+
+
+<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items/<%= @item.id %>" method="POST">
+
+	<div class="panel panel-default">
+
+		<div class="panel-heading">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Title</span>
+				<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" value="<%= @item.title %>">
+			</div>	
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Description</span>
+				<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" value="<%= @item.description %>">
+			</div>	
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">app_name/</span>
+				<input class="form-control" type="text" name="item[path]" aria-describedby="basic-addon1" value="<%= @item.path %>">
+			</div>							
+		</div>
+
+		<div class="panel-body">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Code</span>
+				<input class="form-control" type="text" name="item[code]" aria-describedby="basic-addon1" value="<%= @item.code %>">
+			</div>	
+		</div>
+
+	</div>	
+
+	<input type="hidden" name="_method" value="PATCH">
+	<input class="btn btn-success" type="submit" value="Create Step">
+</form>

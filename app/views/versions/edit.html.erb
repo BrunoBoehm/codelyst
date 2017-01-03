@@ -10,11 +10,13 @@
 	<% @items.each do |item| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h2 class="panel-title"><a href="/lists/<%= list.id %>"><%= item.title %></a></h2>
+				<h2 class="panel-title"><%= item.title %></h2>
 			</div>
 			<div class="panel-body">
 				<p><%= item.description %></p>
+				<p><%= item.code %></p>
 			</div>
+			<div class="panel-footer"><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit</a></div>
 		</div>
 	<% end %>
 <% else %>
