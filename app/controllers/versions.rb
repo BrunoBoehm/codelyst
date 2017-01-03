@@ -18,6 +18,7 @@ class VersionsController < ApplicationController
 	get "/lists/:id/add-items" do
 		@list = List.find_by(id: params[:id])
 		@version = @list.versions.first
+		@items = @version.items
 		erb :"versions/add-items.html"
 	end
 
@@ -33,7 +34,6 @@ class VersionsController < ApplicationController
 
 	# create the first item of a list
 	post "/list/:id" do
-		binding.pry
 		list = List.find(params[:id])
 		version = list.versions.first
 		item = version.items.build(params[:item])

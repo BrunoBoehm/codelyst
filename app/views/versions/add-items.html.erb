@@ -1,14 +1,33 @@
-<div class="alert alert-success" role="alert">
-	<p>Congratulation you just created a lyst. What's next?</p>
-	<ul>
-		<li>Below, you'll be able to propose your solution</li>
-		<li>Other users will be able to propose other versions</li>
-		<li>And of course don't hesitate to propose alternative versions too.</li>
-	</ul>
-</div>
-
 <h1>Title: <%= @list.title %></h1>
 <p>Description: <%= @list.description %></p>
+
+<% if @version.items.count < 1 %>
+
+	<div class="alert alert-success" role="alert">
+		<p>Congratulation you just created a lyst. What's next?</p>
+		<ul>
+			<li>Below, you'll be able to propose your solution</li>
+			<li>Other users will be able to propose other versions</li>
+			<li>And of course don't hesitate to propose alternative versions too.</li>
+		</ul>
+	</div>
+
+<% else %>
+
+	<% @items.each do |item| %>
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title"><%= item.title %></h3>
+		  	<span class="label label-info"><%= item.path.blank? ? "app/example_path.erb" : item.path %></span>
+		  </div>
+		  <div class="panel-body">
+		  	<p><%= item.description %></p>
+		    <p><%= item.code %></p>
+		  </div>
+		</div>
+	<% end %>
+
+<% end %>
 
 <!-- form action is to singular "/list", not "/listS" check the routes -->
 <form action="/list/<%= @list.id %>" method="POST">
@@ -16,7 +35,7 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h2 class="panel-title">Step #1</h2>
+			<h2 class="panel-title">Step <%= @items.count + 1 %></h2>
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Title</span>
 				<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" placeholder="Title for that step">
@@ -40,5 +59,5 @@
 
 	</div>	
 
-	<input class="btn btn-success" type="submit" value="Create First Step">
+	<input class="btn btn-success" type="submit" value="Create Step">
 </form>
