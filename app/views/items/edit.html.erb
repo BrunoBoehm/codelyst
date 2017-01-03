@@ -26,10 +26,14 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="input-group">
+<!-- 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Code</span>
 				<input class="form-control" type="text" name="item[code]" aria-describedby="basic-addon1" value="<%= @item.code %>">
-			</div>	
+			</div>	 -->
+			<div class="form-group">
+				<label>Code:</label>
+				<textarea class="form-control" name="item[code]"><%= h @item.code %></textarea>
+			</div>
 		</div>
 
 	</div>	

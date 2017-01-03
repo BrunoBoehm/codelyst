@@ -2,6 +2,7 @@ class ApplicationController < Sinatra::Base
 	# required by sinatra-activerecord gem
 	register Sinatra::ActiveRecordExtension
 	helpers Sinatra::SessionHelpers
+	helpers Sinatra::HTMLEscapeHelper
 
 	configure do
 	  enable :sessions	
