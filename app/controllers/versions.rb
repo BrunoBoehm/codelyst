@@ -16,7 +16,6 @@ class VersionsController < ApplicationController
 
 	# create a list (create the first version of the list and nested items)
 	post "/lists/:id" do
-		binding.pry
 		list = List.find(params[:id])
 		version = list.versions.first
 		params[:version][:item].each do |params|
