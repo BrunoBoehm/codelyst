@@ -79,4 +79,14 @@ class VersionsController < ApplicationController
     	# QUESTION: how to auto increment from 1 instead of version id (guess: new column) ?
     	erb :"versions/edit.html"
   	end
+
+  	# update a version
+  	patch "/lists/:list_id/versions/:id/edit" do
+    	version = Version.find(params[:id]) 
+    	if version.update(params[:version])
+    		redirect to "/lists/#{params[:list_id]}/versions/#{params[:id]}"
+    	else
+    		erb :"versions/edit.html"
+    	end
+  	end
 end
