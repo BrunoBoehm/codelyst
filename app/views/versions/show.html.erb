@@ -1,0 +1,38 @@
+<h1><%= @list.title %></h1>
+<p><%= @list.description %></p>
+
+<!-- should be replaced by 3 first versions -->
+<h2><%= @version.title %></h2>
+<p><%= @version.description %></p>
+
+<h4>Files Used</h4>
+<ul class="list-group">
+	<% @version.items.each do |item| %> 
+		<li class="list-group-item"><%= item.path %></li>
+	<% end %>
+</ul>
+
+<h4>Steps to complete</h4>
+<% @version.items.each do |item| %>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  	<h3 class="panel-title"><%= item.title %></h3>
+	  	<span class="label label-info"><%= item.path.blank? ? "app/example_path.erb" : item.path %></span>
+	  </div>
+	  <div class="panel-body">
+	  	<p><%= item.description %></p>
+	    <p><pre><code class="language-html"><%= h item.code %></code></pre></p>
+	  </div>
+	</div>
+<% end %>
+<p><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit">Edit this version</a> | <a href="/lists/<%= @list.id %>/versions/new">Add a new version</a></p>
+
+
+<hr>
+<h4>Available versions (<%= @list.versions.count %>)</h4>
+<ul>
+	<% @list.versions.each do |version| %>
+		<li><a href="/lists/<%= @list.id%>/versions/<%= version.id %>"><%= version.title ||= "Original Version" %></a></li>
+	<% end %>
+	<li><a href="/lists/<%= @list.id %>/versions/new">Add a new version</a></li>
+</ul>

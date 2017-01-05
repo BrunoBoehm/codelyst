@@ -30,7 +30,7 @@
 <% end %>
 
 <!-- form action is to singular "/list", not "/listS" check the routes -->
-<form action="/list/<%= @list.id %>" method="POST">
+<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items" method="POST">
 
 	<div class="panel panel-default">
 

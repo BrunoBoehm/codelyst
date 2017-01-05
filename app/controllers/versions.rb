@@ -9,6 +9,12 @@ class VersionsController < ApplicationController
 		erb :"versions/index.html"
 	end
 
+	# show
+	get "/lists/:list_id/versions/:id" do
+		@list = List.find(params[:list_id])
+		@version = Version.find(params[:id])
+		erb :"versions/show.html"
+	end
 
 	### alternative: edit the first version of a list by adding items in bulk
 	# get "/lists/:id/create" do
