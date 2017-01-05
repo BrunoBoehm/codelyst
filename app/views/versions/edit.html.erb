@@ -45,3 +45,12 @@
 <% end %>
 
 <a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/items/new"><button type="button" class="btn btn-success">Add item</button></a>
+
+<hr>
+
+<p>All good things come to an end...</p>
+<h4>Want to get rid of this version, <%= current_user.name %>?</h4>
+<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete the following version?')">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="submit" value="Delete Version" class="btn btn-danger">
+</form>

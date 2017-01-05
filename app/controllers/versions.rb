@@ -89,4 +89,11 @@ class VersionsController < ApplicationController
     		erb :"versions/edit.html"
     	end
   	end
+
+  	# destroy a version
+  	delete "/lists/:list_id/versions/:id/delete" do
+  		version = Version.find(params[:id])
+  		version.destroy
+  		redirect to "/lists/#{params[:list_id]}"
+  	end
 end
