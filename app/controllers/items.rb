@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 		version = Version.find(params[:id])
 		item = version.items.build(params[:item])
 		if item.save
-			redirect "/lists/#{list.id}"
+			redirect "/lists/#{list.id}/versions/#{version.id}/items/new"
 		else
 			erb :"versions/add-items.html"
 		end	

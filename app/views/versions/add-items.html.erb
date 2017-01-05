@@ -14,10 +14,10 @@
 
 <% else %>
 
-	<% @items.each do |item| %>
+	<% @items.each_with_index do |item, index| %>
 		<div class="panel panel-default">
 		  <div class="panel-heading">
-		  	<h3 class="panel-title"><%= item.title %></h3>
+		  	<h3 class="panel-title"><%= index+1 %>. <%= item.title %></h3>
 		  	<span class="label label-info"><%= item.path.blank? ? "app/example_path.erb" : item.path %></span>
 		  </div>
 		  <div class="panel-body">
@@ -35,7 +35,7 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h2 class="panel-title">Step <%= @items.count + 1 %></h2>
+			<h2 class="panel-title"><%= @items.count + 1 %>. </h2>
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Title</span>
 				<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" placeholder="Title for that step">

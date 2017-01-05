@@ -1,6 +1,7 @@
-<h1>Edit Version: "<%= @version.title ||= "No title yet for this version" %>"</h1>
+<h1>Edit Version<%= @version.title ||= "Original Version" %></h1>
 <h2>List: "<%= @list.title %>"</h2>
 
+<% unless @version == @list.versions.first %>
 <form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit" method="POST" >
 	<div class="input-group">
 		<span class="input-group-addon" id="basic-addon1">Title</span>
@@ -15,15 +16,16 @@
 	<input type="hidden" name="_method" value="PATCH">
 	<input type="submit" name="Update Version" class="btn btn-success">
 </form>	
+<% end %>
 
 <hr>
 
 <% if !@items.empty? %>
 	<h3>Edit items for this list:</h3>
-	<% @items.each do |item| %>
+	<% @items.each_with_index do |item, index| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h2 class="panel-title"><%= item.title %></h2>
+				<h2 class="panel-title"><%= index+1 %>. <%= item.title %></h2>
 			</div>
 			<div class="panel-body">
 				<p><%= item.description %></p>
