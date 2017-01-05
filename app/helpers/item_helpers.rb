@@ -10,7 +10,7 @@ module Sinatra
   		if item.language
 	  	  case item.language
 	  		when "erb"
-	  			"ruby"
+	  			"html"
 	  		when "js"
 	  			"javascript"
 	  		when "html"

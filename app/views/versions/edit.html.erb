@@ -31,7 +31,13 @@
 				<p><%= item.description %></p>
 				<p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
 			</div>
-			<div class="panel-footer"><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit</a></div>
+			<div class="panel-footer">
+				<a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit</a>
+				<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items/<%= item.id %>/delete" method="POST" >
+					<input type="hidden" name="_method" value="DELETE">
+					<input type="submit" value="Delete Item" class="btn btn-danger">
+				</form>	
+			</div>
 		</div>
 	<% end %>
 <% else %>

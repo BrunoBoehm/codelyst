@@ -46,4 +46,11 @@ class ItemsController < ApplicationController
 			erb :"items/edit.html"
 		end
 	end
+
+  	# delete
+  	delete "/lists/:list_id/versions/:version_id/items/:id/delete" do
+  		item = Item.find(params[:id])
+  		item.destroy
+  		redirect "/lists/#{params[:list_id]}/versions/#{params[:version_id]}"
+  	end	
 end
