@@ -25,11 +25,11 @@
 	<% @items.each_with_index do |item, index| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h2 class="panel-title"><%= index+1 %>. <%= item.title %></h2>
+				<h3 class="panel-title"><%= index+1 %>. <%= item.title %> <span class="label label-primary pull-right"><%= lang(item) %></span></h3>
 			</div>
 			<div class="panel-body">
 				<p><%= item.description %></p>
-				<p><pre><code class="language-html"><%= h item.code %></code></pre></p>
+				<p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
 			</div>
 			<div class="panel-footer"><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit</a></div>
 		</div>

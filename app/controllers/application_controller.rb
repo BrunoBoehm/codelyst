@@ -3,6 +3,7 @@ class ApplicationController < Sinatra::Base
 	register Sinatra::ActiveRecordExtension
 	helpers Sinatra::SessionHelpers
 	helpers Sinatra::HTMLEscapeHelper
+	helpers Sinatra::Language
 
 	configure do
 	  enable :sessions	

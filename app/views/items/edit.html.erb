@@ -36,8 +36,12 @@
 			</div>
 		</div>
 
+		<div class="panel-footer">
+			<p><%= @item.language ||= "No language set yet" %> => <%= lang(@item) %></p>
+		</div>
+
 	</div>	
 
 	<input type="hidden" name="_method" value="PATCH">
-	<input class="btn btn-success" type="submit" value="Create Step">
+	<input class="btn btn-success" type="submit" value="Update Step">
 </form>

@@ -16,7 +16,7 @@
 <% @version.items.each do |item| %>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	  	<h3 class="panel-title"><%= item.title %></h3>
+	  	<h3 class="panel-title"><%= item.title %> <span class="label label-primary pull-right"><%= lang(item) %></span></h3>
 	  	<span class="label label-info"><%= item.path.blank? ? "app/example_path.erb" : item.path %></span>
 	  </div>
 	  <div class="panel-body">

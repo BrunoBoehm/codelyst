@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
 		list = List.find(params[:list_id])
 		version = Version.find(params[:id])
 		item = version.items.build(params[:item])
+		item.to_lang
 		if item.save
 			redirect "/lists/#{list.id}/versions/#{version.id}/items/new"
 		else
@@ -33,12 +34,13 @@ class ItemsController < ApplicationController
 		erb :"items/edit.html"
 	end
 
-	# update and intem from a list and version
+	# update and item from a list and version
 	patch "/lists/:list_id/versions/:version_id/items/:id" do
 		@list = List.find(params[:list_id])
 		@version = Version.find(params[:version_id])
 		@item = Item.find(params[:id])
 		if @item.update(params[:item])
+			@item.to_lang.save
 			redirect to "/lists/#{@list.id}/versions/#{@version.id}/edit"
 		else
 			erb :"items/edit.html"
