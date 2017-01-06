@@ -19,7 +19,7 @@ module Sinatra
 	  			"ruby"	
 	  		end  			
   		else
-  			"html"
+  			"none"
   		end
 
   	end
