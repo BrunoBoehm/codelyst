@@ -10,7 +10,7 @@
 				</div>
 				<div class="panel-body">
 					<p>
-					<% list.users.each do |user| %>
+					<% list.users.uniq.each do |user| %>
 						<span class="label label-info"><%= user.full_name %></span>
 					<% end %>
 					</p>

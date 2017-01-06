@@ -75,11 +75,15 @@ class VersionsController < ApplicationController
 
 	# edit a version
 	get '/lists/:list_id/versions/:id/edit' do
-    	@list = List.find(params[:list_id])
-    	@version = Version.find(params[:id])
-    	@items = @version.items.all
-    	# QUESTION: how to auto increment from 1 instead of version id (guess: new column) ?
-    	erb :"versions/edit.html"
+		@version = Version.find(params[:id])
+		owner = @version.user
+		if current_user?(owner)
+			@list = List.find(params[:list_id])
+    		@items = @version.items.all
+    		erb :"versions/edit.html"
+		else
+			redirect "/lists"
+		end
   	end
 
   	# update a version
