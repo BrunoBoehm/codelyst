@@ -11,8 +11,12 @@ class VersionsController < ApplicationController
 	# create a new alternate version out of an existing list
 	# should come before the show action - otherwise will interpret params[:id] as new
 	get "/lists/:id/versions/new" do
-		@list = List.find(params[:id])
-		erb :"versions/new.html"
+		if logged_in?
+			@list = List.find(params[:id])
+			erb :"versions/new.html"			
+		else
+			redirect "/lists"
+		end
 	end
 
 	# show
@@ -60,13 +64,11 @@ class VersionsController < ApplicationController
 		end	
 	end
 
-
-
 	post "/lists/:id/versions/new" do
 		# {"version"=>{"title"=>"Second version", "description"=>"Version desc", "user_id"=>"2"}, ...}
 		list = List.find(params[:id])
 		version = list.versions.build(params[:version])
-		if version.save
+		if logged_in? && version.save
 			redirect to "/lists/#{list.id}"
 		else
 			erb :"versions/new.html"
