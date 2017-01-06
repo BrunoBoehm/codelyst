@@ -53,6 +53,33 @@ img.media-object {
 	font-size: 20px;
 }
 
-h4 {
-	margin-top: 60px;
+.info-relative {
+  background: url("/img/red-bg.jpg") no-repeat 0 0 fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
 }
+
+.info-relative a {
+	color: white;
+}
+
+.info-relative li {
+	list-style: none;
+}
+
+.box {
+    padding: 40px 0;
+}
+
+hr.accent {
+    border: 0;
+    margin: 30px 0;
+    height: 1px;
+    border-top: 1px solid #eee;
+/*    background-image: linear-gradient(to right, rgba(250, 93, 86, 0), rgba(250, 93, 86, 0.75), rgba(250, 93, 86, 0));	*/
+}
+
