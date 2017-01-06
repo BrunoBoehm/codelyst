@@ -103,8 +103,13 @@ class VersionsController < ApplicationController
   	delete "/lists/:list_id/versions/:id/delete" do
   		list = List.find(params[:list_id])
   		version = Version.find(params[:id])
-  		version.destroy
-  		list.destroy if list.versions.count == 0
-  		redirect to "/lists"
+  		owner = version.user
+  		if current_user?(owner)
+	  		version.destroy
+	  		list.destroy if list.versions.count == 0
+	  		redirect to "/lists"
+  		else
+  			redirect to "/lists"
+  		end
   	end
 end
