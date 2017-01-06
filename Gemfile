@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem "sinatra"
 gem "rake"
 gem "activerecord"
+gem "rack-flash3"
 gem "sinatra-activerecord"
 gem "bcrypt"
 

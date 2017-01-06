@@ -1,6 +1,9 @@
+require 'rack-flash'
 class VersionsController < ApplicationController
 	# the notion of version should not be part of the the URL when it's the first version
 	# then for additional versions we can make allusion to the version element in the URL
+
+	use Rack::Flash
 
 	# index
 	get "/versions" do

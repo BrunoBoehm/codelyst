@@ -1,4 +1,7 @@
+require 'rack-flash'
 class ItemsController < ApplicationController
+	use Rack::Flash
+
 	# index
 	get "/items" do
 		@items = Item.all
@@ -20,8 +23,10 @@ class ItemsController < ApplicationController
 		item = version.items.build(params[:item])
 		item.to_lang
 		if item.save
+			flash[:type], flash[:message] = "success", "Item created! Great, now create as many steps as needed."
 			redirect "/lists/#{list.id}/versions/#{version.id}/items/new"
 		else
+			flash[:type], flash[:message] = "warning", "Hum... something went wrong, trying saving this step again."
 			erb :"versions/add-items.html"
 		end	
 	end	

@@ -1,4 +1,7 @@
+require 'rack-flash'
 class SessionsController < ApplicationController
+	use Rack::Flash
+	
 	get "/login" do
 		erb :"sessions/login.html"
 	end
