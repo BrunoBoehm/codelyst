@@ -35,7 +35,9 @@
 	</div>
 <% end %>
 
-<p><a href="/lists/<%= @list.id %>/versions/<%= @list.versions.first.id %>/edit">Edit this version</a></p>
+<% if current_user?(@list.versions.first.user) %>
+	<p><a href="/lists/<%= @list.id %>/versions/<%= @list.versions.first.id %>/edit">Edit this version</a></p>
+<% end %>
 <p><a href="/lists/<%= @list.id %>/versions/new">Add a new version</a></p>
 
 <% end %> <!-- end conditional if version count > 0 -->
