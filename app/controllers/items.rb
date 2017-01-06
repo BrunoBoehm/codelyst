@@ -30,7 +30,8 @@ class ItemsController < ApplicationController
 			flash[:type], flash[:message] = "success", "Item created! Great, now create as many steps as needed."
 			redirect "/lists/#{list.id}/versions/#{version.id}/items/new"
 		else
-			flash[:type], flash[:message] = "warning", "Hum... something went wrong, trying saving this step again."
+			flash.now[:type], flash.now[:message] = "warning", "Hum... something went wrong, trying saving this step again."
+			# .now because there is no redirect, hence the warning would otherwise stay until next redirect (and would be seen on one page where it has no relevance)
 			@items = @version.items.to_a[0..-2]
 			# this removes the @item object instantiated in memory
 			# should also modify view to see value of created item
