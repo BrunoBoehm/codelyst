@@ -3,10 +3,13 @@
 <% @versions.each do |version| %>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h2 class="panel-title"><%= version.title %></h2>
+			<h2 class="panel-title"><%= version.title ||= "Original Version" %></h2>
 		</div>
 		<div class="panel-body">
 		    <%= version.description %>
+		</div>
+		<div class="panel-footer">
+			<p>Belongs to: <span class="label label-info"><%= version.user.name if version.user %></span>, for list: "<%= version.list.title if version.list %>"</p>
 		</div>
 	</div>
 <% end %>

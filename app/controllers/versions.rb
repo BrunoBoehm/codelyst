@@ -94,8 +94,10 @@ class VersionsController < ApplicationController
 
   	# destroy a version
   	delete "/lists/:list_id/versions/:id/delete" do
+  		list = List.find(params[:list_id])
   		version = Version.find(params[:id])
   		version.destroy
-  		redirect to "/lists/#{params[:list_id]}"
+  		list.destroy if list.versions.count == 0
+  		redirect to "/lists"
   	end
 end

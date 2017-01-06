@@ -1,6 +1,8 @@
 <h1><%= @list.title %></h1>
 <p><%= @list.description %></p>
 <br>
+<% if @list.versions.count > 0 %>
+
 <ul class="nav nav-pills nav-justified">
 	<% @versions.each_with_index do |version, index| %>	
 	  <li role="presentation" <%= 'class="active"' if index == 0 %>><a href="#">Version <%= index +1 %></a></li>
@@ -34,6 +36,7 @@
 <% end %>
 <p><a href="/lists/<%= @list.id %>/versions/<%= @list.versions.first.id %>/edit">Edit this version</a> | <a href="/lists/<%= @list.id %>/versions/new">Add a new version</a></p>
 
+<% end %>
 
 <hr>
 <h4>Available versions (<%= @list.versions.count %>)</h4>
