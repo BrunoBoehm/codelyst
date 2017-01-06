@@ -2,11 +2,17 @@ class VersionsController < ApplicationController
 	# the notion of version should not be part of the the URL when it's the first version
 	# then for additional versions we can make allusion to the version element in the URL
 
-
 	# index
 	get "/versions" do
 		@versions = Version.all
 		erb :"versions/index.html"
+	end
+
+	# create a new alternate version out of an existing list
+	# should come before the show action - otherwise will interpret params[:id] as new
+	get "/lists/:id/versions/new" do
+		@list = List.find(params[:id])
+		erb :"versions/new.html"
 	end
 
 	# show
@@ -54,11 +60,7 @@ class VersionsController < ApplicationController
 		end	
 	end
 
-	# create a new alternate version out of an existing list
-	get "/lists/:id/versions/new" do
-		@list = List.find(params[:id])
-		erb :"versions/new.html"
-	end
+
 
 	post "/lists/:id/versions/new" do
 		# {"version"=>{"title"=>"Second version", "description"=>"Version desc", "user_id"=>"2"}, ...}
