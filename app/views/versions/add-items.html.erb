@@ -29,6 +29,17 @@
 
 <% end %>
 
+<% if @item.errors.any? %>
+	<div class="alert alert-warning" role="alert">
+		<h4>Make sure you correct:</h4>
+		<ul>
+			<% @item.errors.full_messages.each do |msg| %>
+	      		<li><%= msg %></li>
+	    	<% end %>
+		</ul>
+	</div>
+<% end %>
+
 <!-- form action is to singular "/list", not "/listS" check the routes -->
 <form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items" method="POST">
 
@@ -38,15 +49,15 @@
 			<h2 class="panel-title"><%= @items.count + 1 %>. </h2>
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Title</span>
-				<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" placeholder="Title for that step">
+				<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" placeholder="Title for that step" value="<%= @item.title %>">
 			</div>	
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Description</span>
-				<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" placeholder="What is this step's objective?">
+				<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" placeholder="What is this step's objective?" value="<%= @item.description %>">
 			</div>	
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">app_name/</span>
-				<input class="form-control" type="text" name="item[path]" aria-describedby="basic-addon1" placeholder="Type in the path of this code's file in the project's directory">
+				<input class="form-control" type="text" name="item[path]" aria-describedby="basic-addon1" placeholder="Type in the path of this code's file in the project's directory" value="<%= @item.path %>">
 			</div>							
 		</div>
 
@@ -57,7 +68,7 @@
 			</div> -->
 			<div class="form-group">
 				<label>Code:</label>
-				<textarea class="form-control" name="item[code]" rows="12"></textarea>
+				<textarea class="form-control" name="item[code]" rows="12"><%= @item.code %></textarea>
 			</div>						
 		</div>
 

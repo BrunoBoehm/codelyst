@@ -12,21 +12,28 @@ class ItemsController < ApplicationController
 	get "/lists/:list_id/versions/:id/items/new" do
 		@list = List.find(params[:list_id])
 		@version = Version.find(params[:id])
+		@item = Item.new
+		# provides empty object for the form's values (otherwise nil will prompt error)
 		@items = @version.items
 		erb :"versions/add-items.html"
 	end
 
 	# create item from a list and version
 	post "/lists/:list_id/versions/:id/items" do
-		list = List.find(params[:list_id])
-		version = Version.find(params[:id])
-		item = version.items.build(params[:item])
-		item.to_lang
-		if item.save
+		@list = List.find(params[:list_id])
+		@version = Version.find(params[:id])
+		@items = @version.items
+		# will integrate the memory built item if validation fails, overriden in the else condition below
+		@item = @version.items.build(params[:item])
+		@item.to_lang
+		if @item.save
 			flash[:type], flash[:message] = "success", "Item created! Great, now create as many steps as needed."
 			redirect "/lists/#{list.id}/versions/#{version.id}/items/new"
 		else
 			flash[:type], flash[:message] = "warning", "Hum... something went wrong, trying saving this step again."
+			@items = @version.items.to_a[0..-2]
+			# this removes the @item object instantiated in memory
+			# should also modify view to see value of created item
 			erb :"versions/add-items.html"
 		end	
 	end	
