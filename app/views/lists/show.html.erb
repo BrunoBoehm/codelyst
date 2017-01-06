@@ -1,62 +1,67 @@
-<h1><%= @list.title %></h1>
-<p><%= @list.description %></p>
-<br>
-<% if @list.versions.count > 0 %> <!-- begin conditional if version count > 0 -->
-
-<ul class="nav nav-pills nav-justified">
-	<% @versions.each_with_index do |version, index| %>	
-	  <li role="presentation" <%= 'class="active"' if index == 0 %>><a href="#">Version <%= index +1 %></a></li>
-  	<% end %>
-</ul>
-<br>
-
-<!-- should be replaced by 3 first versions -->
-<h2><%= @list.versions.first.title %></h2>
-<p><%= @list.versions.first.description %></p>
-
-<h4><%= @list.versions.first.items.reject{ |item| item.path.empty? }.count %> Files Used</h4>
-<ul class="list-group">
-	<% @list.versions.first.items.each do |item| %> 
-		<% unless item.path.empty? %><li class="list-group-item"><%= item.path %></li><% end %>
-	<% end %>
-</ul>
-
-<h4><%= @list.versions.first.items.count %> Steps to complete</h4>
-<% @list.versions.first.items.each_with_index do |item, index| %>
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	  	<h3 class="panel-title"><%= index+1 %>. <%= item.title %> <% if lang(item) != "none" %><span class="label label-primary pull-right"><%= lang(item) %></span><% end %></h3>
-	  	<span class="label label-info"><%= item.try(:path) %></span>
-	  </div>
-	  <div class="panel-body">
-	  	<p><%= item.description %></p>
-	    <p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
-	  </div>
+<div class="page-header">
+	<div class="container">
+		<h1><%= @list.title %></h1>
+		<p><%= @list.description %></p>
 	</div>
-<% end %>
+</div>
 
-<% if current_user?(@list.versions.first.user) %>
-	<p><a href="/lists/<%= @list.id %>/versions/<%= @list.versions.first.id %>/edit">Edit this version</a></p>
-<% end %>
+<div class="container">
+	<% if @list.versions.count > 0 %> <!-- begin conditional if version count > 0 -->
 
-<% end %> <!-- end conditional if version count > 0 -->
+	<!-- <ul class="nav nav-pills nav-justified">
+		<% @versions.each_with_index do |version, index| %>	
+		  <li role="presentation" <%= 'class="active"' if index == 0 %>><a href="#">Version <%= index +1 %></a></li>
+	  	<% end %>
+	</ul>
+	<br> -->
 
-<hr>
-<h4>Available versions (<%= @list.versions.count %>)</h4>
-<ul>
-	<% @list.versions.each do |version| %>
-		<li><a href="/lists/<%= @list.id%>/versions/<%= version.id %>"><%= version.title ||= "Original Version" %></a></li>
+	<!-- should be replaced by 3 first versions -->
+	<h2><%= @list.versions.first.title %></h2>
+	<p><%= @list.versions.first.description %></p>
+
+	<h4><%= @list.versions.first.items.reject{ |item| item.path.empty? }.count %> Files Used</h4>
+	<ul class="list-group">
+		<% @list.versions.first.items.each do |item| %> 
+			<% unless item.path.empty? %><li class="list-group-item"><%= item.path %></li><% end %>
+		<% end %>
+	</ul>
+
+	<h4><%= @list.versions.first.items.count %> Steps to complete</h4>
+	<% @list.versions.first.items.each_with_index do |item, index| %>
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title"><%= index+1 %>. <%= item.title %> <% if lang(item) != "none" %><span class="label label-primary pull-right"><%= lang(item) %></span><% end %></h3>
+		  	<span class="label label-info"><%= item.try(:path) %></span>
+		  </div>
+		  <div class="panel-body">
+		  	<p><%= item.description %></p>
+		    <p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
+		  </div>
+		</div>
 	<% end %>
-	<li><a href="/lists/<%= @list.id %>/versions/new"><%= logged_in? ? "Add a new version" : "Add a new version (create your account first)" %></a></li>
-</ul>
 
-<hr>
-
-<h4>Contributors to this lyst</h4>
-<ul>
-	<% @contributors.uniq.each do |contributor| %>
-		<li><a href=""><%= contributor.full_name %></a>, last update on <%= contributor.versions.last.updated_at.strftime("%b %d, %Y - %H:%M UTC") %></li>
+	<% if current_user?(@list.versions.first.user) %>
+		<p><a href="/lists/<%= @list.id %>/versions/<%= @list.versions.first.id %>/edit">Edit this version</a></p>
 	<% end %>
-</ul>
 
-<hr>
+	<% end %> <!-- end conditional if version count > 0 -->
+
+	<hr>
+	<h4>Available versions (<%= @list.versions.count %>)</h4>
+	<ul>
+		<% @list.versions.each do |version| %>
+			<li><a href="/lists/<%= @list.id%>/versions/<%= version.id %>"><%= version.title ||= "Original Version" %></a></li>
+		<% end %>
+		<li><a href="/lists/<%= @list.id %>/versions/new"><%= logged_in? ? "Add a new version" : "Add a new version (create your account first)" %></a></li>
+	</ul>
+
+	<hr>
+
+	<h4>Contributors to this lyst</h4>
+	<ul>
+		<% @contributors.uniq.each do |contributor| %>
+			<li><a href=""><%= contributor.full_name %></a>, last update on <%= contributor.versions.last.updated_at.strftime("%b %d, %Y - %H:%M UTC") %></li>
+		<% end %>
+	</ul>
+
+</div>

@@ -1,4 +1,3 @@
-
 .media {
 	background-color: #efefef;
 }
@@ -11,4 +10,49 @@ img.media-object {
 
 .input-group {
 	margin: 20px 0;
+}
+
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;    
+}
+
+@media (min-width: 768px) {
+	.navbar {
+		position: fixed;
+	    width: 100%;
+	    z-index: 200;	
+	}
+
+	.page-header {
+		padding: 160px 0 10px;
+	}
+}
+
+@media (max-width: 768px) {
+	.page-header {
+		padding: 40px 0 10px;
+	}	
+}
+
+.page-header {
+  background: url("/img/red-bg.jpg") no-repeat top left fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+  margin: 0;
+}
+
+.page-header h1 {
+	font-size: 56px;
+}
+
+.page-header p {
+	font-size: 20px;
+}
+
+h4 {
+	margin-top: 60px;
 }

@@ -20,3 +20,5 @@ Confirm
 ## Questions
 - How to add version id starting from 1 for each list
 - Flash could be just once in config.ru and environment.rb ?
+- How to sanitize form params like strong parameters require.permit in rails?
+- What security measures for any Sinatra App (CSRF...)?
