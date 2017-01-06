@@ -91,7 +91,8 @@ class VersionsController < ApplicationController
   	# update a version
   	patch "/lists/:list_id/versions/:id/edit" do
     	version = Version.find(params[:id]) 
-    	if version.update(params[:version])
+    	owner = version.user
+    	if current_user?(owner) && version.update(params[:version])
     		redirect to "/lists/#{params[:list_id]}/versions/#{params[:id]}"
     	else
     		erb :"versions/edit.html"
