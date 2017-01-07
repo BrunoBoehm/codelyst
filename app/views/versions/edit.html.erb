@@ -29,7 +29,7 @@
 		<hr>
 
 		<% if !@items.empty? %>
-			<h3>Edit items for this list:</h3>
+			<h3 class="line">Edit items for this list:</h3>
 			<% @items.each_with_index do |item, index| %>
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -40,11 +40,13 @@
 						<p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
 					</div>
 					<div class="panel-footer">
-						<a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit</a>
-						<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items/<%= item.id %>/delete" method="POST" >
-							<input type="hidden" name="_method" value="DELETE">
-							<input type="submit" value="Delete Item" class="btn btn-danger">
-						</form>	
+						<a class="btn btn-warning" href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit</a>
+						<div class="pull-right">
+							<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items/<%= item.id %>/delete" method="POST" >
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="submit" value="Delete Item" class="btn btn-danger">
+							</form>
+						</div>	
 					</div>
 				</div>
 			<% end %>

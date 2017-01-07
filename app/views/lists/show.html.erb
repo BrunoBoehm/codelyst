@@ -56,7 +56,7 @@
 			<% @list.versions.each do |version| %>
 				<p><a href="/lists/<%= @list.id%>/versions/<%= version.id %>"><%= version.title ||= "Original Version" %></a></p>
 			<% end %>
-				<p><a href="/lists/<%= @list.id %>/versions/new"><%= logged_in? ? "#{current_user.name}, Add a new version" : "Add a new version (create your account first)" %></a></p>
+				<p><a class="btn btn-transparent" href="/lists/<%= @list.id %>/versions/new"><%= logged_in? ? "#{current_user.name}, Add a new version" : "Add a new version (create your account first)" %></a></p>
 
 		<h4>Contributors to this lyst</h4>
 			<% @contributors.uniq.each do |contributor| %>
