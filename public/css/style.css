@@ -99,3 +99,13 @@ h2.panel-title a:hover {
 	color: #fa5d56;
 	text-decoration: none;
 }
+
+.btn-action {
+    color: #fff;
+    background-color: #fa5d56;
+    border-color: #e9564f;
+}
+
+div.page-header p a {
+  color: white;
+}

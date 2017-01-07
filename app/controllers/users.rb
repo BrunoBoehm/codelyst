@@ -10,12 +10,7 @@ use Rack::Flash
 
 	# new
 	get "/register" do
-		if logged_in?
-			erb :"users/new.html"
-		else
-			redirect to "/login"
-		end
-		
+		erb :"users/new.html"
 	end
 
 	# create

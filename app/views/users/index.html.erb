@@ -1,28 +1,46 @@
-<h1>Users (<%= @users.count %>)</h1>
-<p>This is a list of all users of CodeLyst</p>
-
-<% if logged_in? %>
-	<div class="alert alert-info" role="alert">
-		<p>Currently logged-in as <%= current_user.full_name %> (user_id: <%= session[:user_id] %>)</p>
+<div class="page-header">
+	<div class="container">
+		<h1>Codelyst Users</h1>
+		<p>This is a list of the <%= @users.count %> users of CodeLyst</p>
 	</div>
-<% end %>
+</div>
 
-<% @users.each do |user| %>
-	<div class="media">
-	  <div class="media-left">
-	    <a href="#">
-	      <img class="media-object" src="<%= user.picture_url %>" alt="<%= user.full_name %>">
-	    </a>
-	  </div>
-	  <div class="media-body">
-	    <h4 class="media-heading"><%= user.full_name %></h4>
-	    <span class="label label-info">Id: <%= user.id %></span> 
-	    <span class="label label-default">Lists: <%= user.lists.count %></span> 
-	    <span class="label label-success">Created: <%= user.created_at.strftime("%b %d, %Y - %H:%M UTC") %></span>
-	    <p><%= user.description %></p>
-	    <% if current_user?(user) %>
-	    	<button type="button" class="btn btn-default"><a href="/users/<%= user.id %>/edit">Edit</a></button>
-	    <% end %>
-	  </div>
+<div class="box">
+	<div class="container">
+
+		<% if logged_in? %>
+			<div class="alert alert-info" role="alert">
+				<p>Currently logged-in as <%= current_user.full_name %> (user_id: <%= session[:user_id] %>)</p>
+			</div>
+		<% end %>
+
+		<% @users.each do |user| %>
+			<div class="media">
+			  <div class="media-left">
+			    <a href="#">
+			      <img class="media-object" src="<%= user.picture_url %>" alt="<%= user.full_name %>">
+			    </a>
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading"><%= user.full_name %></h4>
+			    <!-- <span class="label label-info">User number: <%= user.id %></span>  -->
+			    <span class="label label-default">Lists: <%= user.lists.count %></span> 
+			    <span class="label label-success">Created: <%= user.created_at.strftime("%b %d, %Y - %H:%M UTC") %></span>
+			    <p><%= user.description %></p>
+			    <% if current_user?(user) %>
+			    	<button type="button" class="btn btn-default"><a href="/users/<%= user.id %>/edit">Edit</a></button>
+			    <% end %>
+			  </div>
+			</div>
+		<% end %>
+
+    </div>
+</div>
+
+<div class="box">
+	<div class="container">
+		<h2>Create your CodeLyst Account</h2>
+		<p>Create your free account to start contributing on lists and proposing new ones.</p>
+		<p><a class="btn btn-action btn-lg" href="/register" role="button">Start Now</a></p>
 	</div>
-<% end %>
+</div>

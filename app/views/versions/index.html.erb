@@ -1,15 +1,24 @@
-<h1>Versions (<%= @versions.count %>)</h1>
-
-<% @versions.each do |version| %>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h2 class="panel-title"><%= version.title ||= "Original Version" %></h2>
-		</div>
-		<div class="panel-body">
-		    <%= version.description %>
-		</div>
-		<div class="panel-footer">
-			<p>Belongs to: <span class="label label-info"><%= version.user.name if version.user %></span>, for list: "<%= version.list.title if version.list %>"</p>
-		</div>
+<div class="page-header">
+	<div class="container">
+		<h1>Versions</h1>
+		<p><%= @versions.count %> Versions for all lists</p>
 	</div>
-<% end %>
+</div>
+
+<div class="box">
+	<div class="container">
+		<% @versions.each do |version| %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title"><%= version.title ||= "Original Version" %></h2>
+				</div>
+				<div class="panel-body">
+				    <%= version.description %>
+				</div>
+				<div class="panel-footer">
+					<p>Belongs to: <span class="label label-info"><%= version.user.name if version.user %></span>, for list: "<%= version.list.title if version.list %>"</p>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>		
