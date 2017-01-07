@@ -7,7 +7,7 @@ class VersionsController < ApplicationController
 
 	# index
 	get "/versions" do
-		@versions = Version.all
+		@versions = Version.all.order(created_at: :desc)
 		erb :"versions/index.html"
 	end
 

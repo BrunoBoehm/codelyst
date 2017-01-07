@@ -1,0 +1,36 @@
+<div class="page-header">
+	<div class="container">
+		<h1><%= @user.full_name %>'s lists</h1>
+		<p><%= @user.name %> has contributed so far on <%= @lists.count %> lists, proposing <%= @versions.count %> versions.</p>
+	</div>
+</div>
+
+<!-- There should be a search form or access to tags and categories -->
+
+<div class="box">
+	<div class="container">
+		<h3 class="line"><%= @user.name %> Contributed on these lists</h3>
+		<% @lists.each do |list| %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title"><a href="/lists/<%= list.id %>"><%= list.title %></a>
+						<div class="pull-right">
+							<% list.versions.first.items.collect{|item| item.language}.uniq.each do |lang| %>
+								<span class="label label-language"><%= lang %></span>
+							<% end %>					
+						</div>
+					</h2>
+				</div>
+				<div class="panel-body">
+					<p><%= list.description %></p>
+				</div>
+				<div class="panel-footer">
+					<%= @user.name %>'s versions: 
+					<% list.versions.where(user_id: @user.id).each_with_index do |version, index| %>
+						<a href="/lists/<%= list.id %>/versions/<%= version.id %>"><%= version.title %><%= index > 0 ? ", " : "" %></a>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

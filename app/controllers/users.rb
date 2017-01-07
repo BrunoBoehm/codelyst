@@ -24,6 +24,14 @@ use Rack::Flash
 		end
 	end
 
+	# show
+	get "/users/:id" do
+		@user = User.find(params[:id])
+		@versions = @user.versions
+		@lists = @versions.collect{|version| version.list}.uniq
+		erb :"users/show.html"
+	end
+
 	# edit
 	get "/users/:id/edit" do
 		@user = User.find(params[:id])

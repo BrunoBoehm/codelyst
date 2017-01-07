@@ -16,7 +16,8 @@
 				    <%= version.description %>
 				</div>
 				<div class="panel-footer">
-					<p>Belongs to: <span class="label label-info"><%= version.user.name if version.user %></span>, for list: "<%= version.list.title if version.list %>"</p>
+					By <span class="label label-info"><%= version.user.name if version.user %></span> for list: "<%= version.list.title if version.list %>"
+					<span class="pull-right"><%= version.created_at.strftime("%b %d, %Y") %></span>
 				</div>
 			</div>
 		<% end %>

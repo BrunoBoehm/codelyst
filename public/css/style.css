@@ -32,7 +32,11 @@ img.media-object {
 @media (max-width: 768px) {
 	.page-header {
 		padding: 40px 0 10px;
-	}	
+	}
+
+  .panel-footer .pull-right {
+    display: none;
+  }
 }
 
 .page-header {
