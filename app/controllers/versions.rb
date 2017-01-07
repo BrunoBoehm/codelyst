@@ -72,7 +72,7 @@ class VersionsController < ApplicationController
 		list = List.find(params[:id])
 		version = list.versions.build(params[:version])
 		if logged_in? && version.save
-			redirect to "/lists/#{list.id}"
+			redirect to "/lists/#{list.id}/versions/#{version.id}/items/new"
 		else
 			erb :"versions/new.html"
 		end
