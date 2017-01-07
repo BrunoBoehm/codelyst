@@ -1,27 +1,38 @@
-<h1>Title: <%= @list.title %></h1>
-<p>Description: <%= @list.description %></p>
-
-<div class="alert alert-success" role="alert">
-	<p>Thanks for proposing a new version:</p>
-	<ol>
-		<li>Start by explaining what's different with your version</li>
-		<li>On the next page you'll be able to add the bits of code for your version</li>
-	</ol>
+<div class="page-header">
+	<div class="container">
+		<p>Great, let's create a new version for:</p>
+		<h1><%= @list.title %></h1>
+		<p><%= @list.description %></p>
+	</div>
 </div>
 
-<form action="/lists/<%= @list.id %>/versions/new" method="POST">
+<div class="box">
+	<div class="container">
 
-	<div class="input-group">
-		<span class="input-group-addon" id="basic-addon1">Title</span>
-		<input class="form-control" type="text" name="version[title]" placeholder="Version Title" aria-describedby="basic-addon1">
+		<div class="alert alert-success" role="alert">
+			<p>Thanks for proposing a new version:</p>
+			<ol>
+				<li>Start by explaining what's different with your version</li>
+				<li>On the next page you'll be able to add the bits of code for your version</li>
+			</ol>
+		</div>
+
+		<form action="/lists/<%= @list.id %>/versions/new" method="POST">
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Title</span>
+				<input class="form-control" type="text" name="version[title]" placeholder="Version Title" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Description</span>
+				<input class="form-control" type="text" name="version[description]" placeholder="Why is this version different from the original?" aria-describedby="basic-addon1">
+			</div>
+
+			<input type="hidden" name="version[user_id]" value="<%= current_user.id %>">
+
+			<input class="btn btn-success" type="submit" value="Start New Version">
+		</form>
+		
 	</div>
-
-	<div class="input-group">
-		<span class="input-group-addon" id="basic-addon1">Description</span>
-		<input class="form-control" type="text" name="version[description]" placeholder="Version Description" aria-describedby="basic-addon1">
-	</div>
-
-	<input type="hidden" name="version[user_id]" value="<%= current_user.id %>">
-
-	<input class="btn btn-success" type="submit" value="Create Steps">
-</form>
+</div>
