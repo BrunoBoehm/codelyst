@@ -56,13 +56,6 @@
       </div>
       </div>  
     </nav>
-
-    <div class="container">
-      <% if flash.has?(:message) %>
-        <div class="alert alert-<%= flash[:type] %>" role="alert"><%= flash[:message] %></div>
-      <% end %>
-    </div>
-
     
     <%= yield %>
     

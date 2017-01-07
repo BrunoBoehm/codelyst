@@ -13,6 +13,7 @@ class ListsController < ApplicationController
 		if logged_in?
 			erb :"lists/new.html"
 		else
+			flash[:type], flash[:message] = "warning", "Hum... you should try to log in first!"
 			redirect "/login"
 		end
 	end
@@ -25,13 +26,15 @@ class ListsController < ApplicationController
 				# create the associated version join model instance
 				version = Version.create(user_id: current_user.id, list_id: list.id)
 				# a new list was just created, now for that list's first version we want to add items
-				flash[:message] = "Congratulations, you just created a new list."
+				flash[:type], flash[:message] = "success", "Congratulations, you just created a new list."
 				redirect to "/lists/#{list.id}/versions/#{version.id}/items/new"
 				# this route should only be accessible to the creator of the list (or the creator of the list's first version)
 			else
+				flash.now[:type], flash.now[:message] = "warning", "Sorry, something went wront, try again."
 				erb :"lists/new.html"
 			end
 		else
+			flash[:type], flash[:message] = "warning", "Hum... you should try to log in first!"
 			redirect to "/login"
 		end
 	end

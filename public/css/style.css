@@ -135,3 +135,7 @@ h3.line:after {
 .box .action {
   background-color: #fcfcfc;
 }
+
+.alert {
+  margin-top: 20px;
+}

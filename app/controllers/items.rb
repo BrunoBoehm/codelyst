@@ -12,10 +12,16 @@ class ItemsController < ApplicationController
 	get "/lists/:list_id/versions/:id/items/new" do
 		@list = List.find(params[:list_id])
 		@version = Version.find(params[:id])
-		@item = Item.new
-		# provides empty object for the form's values (otherwise nil will prompt error)
-		@items = @version.items
-		erb :"versions/add-items.html"
+		owner = @version.user
+		if current_user?(owner)
+			@item = Item.new
+			# provides empty object for the form's values (otherwise nil will prompt error)
+			@items = @version.items
+			erb :"versions/add-items.html"
+		else
+			flash[:type], flash[:message] = "warning", "You don't have the permission to add a new item to this version, sorry!"
+			redirect to "/lists"
+		end
 	end
 
 	# create item from a list and version
@@ -64,6 +70,7 @@ class ItemsController < ApplicationController
 	delete "/lists/:list_id/versions/:version_id/items/:id/delete" do
 		item = Item.find(params[:id])
 		item.destroy
+		flash[:type], flash[:message] = "success", "Well done, item deleted!"
 		redirect "/lists/#{params[:list_id]}/versions/#{params[:version_id]}"
 	end	
 end
