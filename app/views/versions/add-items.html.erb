@@ -1,79 +1,99 @@
-<h1>Title: <%= @list.title %></h1>
-<p>Description: <%= @list.description %></p>
-
-<% if @version.items.count < 1 %>
-
-	<div class="alert alert-success" role="alert">
-		<p>Congratulation you just created a lyst. What's next?</p>
-		<ul>
-			<li>Below, you'll be able to propose your solution</li>
-			<li>Other users will be able to propose other versions</li>
-			<li>And of course don't hesitate to propose alternative versions too.</li>
-		</ul>
+<div class="page-header">
+	<div class="container">
+		<p>Add steps to:</p>
+		<h1><%= @list.title %></a></h1>
+		<p><%= @list.description %></p>
 	</div>
+</div>
 
-<% else %>
+<div class="box">
+	<div class="container">
 
-	<% @items.each_with_index do |item, index| %>
-		<div class="panel panel-default">
-		  <div class="panel-heading">
-		  	<h3 class="panel-title"><%= index+1 %>. <%= item.title %></h3>
-		  	<span class="label label-info"><%= item.path.blank? ? "app/example_path.erb" : item.path %></span>
-		  </div>
-		  <div class="panel-body">
-		  	<p><%= item.description %></p>
-		    <p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></pre></code></p>
-		  </div>
-		</div>
-	<% end %>
+		<ol class="breadcrumb">
+		  <li><a href="/lists/<%= @list.id %>">"<%= @list.title %>" List</a></li>
+		  <li><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>">"<%= @version.title ||= "Original" %>" Version</a></li>
+		  <li><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit">Edit Version</a></li>
+		  <li class="active">Add Steps</li>
+		</ol>		
 
-<% end %>
+		<% if @version.items.count < 1 %>
 
-<% if @item.errors.any? %>
-	<div class="alert alert-warning" role="alert">
-		<h4>Make sure you correct:</h4>
-		<ul>
-			<% @item.errors.full_messages.each do |msg| %>
-	      		<li><%= msg %></li>
-	    	<% end %>
-		</ul>
+			<div class="alert alert-success" role="alert">
+				<p>Congratulation you just created a lyst. What's next?</p>
+				<ul>
+					<li>Below, you'll be able to propose your solution</li>
+					<li>Other users will be able to propose other versions</li>
+					<li>And of course don't hesitate to propose alternative versions too.</li>
+				</ul>
+			</div>
+
+		<% else %>
+
+			<% @items.each_with_index do |item, index| %>
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				  	<h3 class="panel-title"><%= index+1 %>. <%= item.title %> <% if lang(item) != "none" %><span class="label label-primary pull-right"><%= lang(item) %></span><% end %></h3>
+				  	<% unless item.path.blank? %>
+				  		<h4><span class="label label-info"><%= item.try(:path) %></span></h4>
+				  	<% end %>
+				  </div>
+				  <div class="panel-body">
+				  	<p><%= item.description %></p>
+				    <p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></pre></code></p>
+				    <p><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/item/<%= item.id %>/edit">Edit this step</a></p>
+				  </div>
+				</div>
+			<% end %>
+
+		<% end %>
+
+		<% if @item.errors.any? %>
+			<div class="alert alert-warning" role="alert">
+				<h4>Make sure you correct:</h4>
+				<ul>
+					<% @item.errors.full_messages.each do |msg| %>
+			      		<li><%= msg %></li>
+			    	<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<!-- form action is to singular "/list", not "/listS" check the routes -->
+		<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items" method="POST">
+
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<h2 class="panel-title"><%= @items.count + 1 %>. </h2>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Title</span>
+						<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" placeholder="Title for that step" value="<%= @item.title %>">
+					</div>	
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Description</span>
+						<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" placeholder="What is this step's objective?" value="<%= @item.description %>">
+					</div>	
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">app_name/</span>
+						<input class="form-control" type="text" name="item[path]" aria-describedby="basic-addon1" placeholder="Type in the path of this code's file in the project's directory" value="<%= @item.path %>">
+					</div>							
+				</div>
+
+				<div class="panel-body">
+		<!-- 			<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Code</span>
+						<input class="form-control" type="text" name="item[code]" aria-describedby="basic-addon1" placeholder="Type the necessary code">
+					</div> -->
+					<div class="form-group">
+						<label>Code:</label>
+						<textarea class="form-control" name="item[code]" rows="12"><%= @item.code %></textarea>
+					</div>						
+				</div>
+
+			</div>	
+
+			<input class="btn btn-success" type="submit" value="Create Step">
+		</form>
+
 	</div>
-<% end %>
-
-<!-- form action is to singular "/list", not "/listS" check the routes -->
-<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/items" method="POST">
-
-	<div class="panel panel-default">
-
-		<div class="panel-heading">
-			<h2 class="panel-title"><%= @items.count + 1 %>. </h2>
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">Title</span>
-				<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" placeholder="Title for that step" value="<%= @item.title %>">
-			</div>	
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">Description</span>
-				<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" placeholder="What is this step's objective?" value="<%= @item.description %>">
-			</div>	
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">app_name/</span>
-				<input class="form-control" type="text" name="item[path]" aria-describedby="basic-addon1" placeholder="Type in the path of this code's file in the project's directory" value="<%= @item.path %>">
-			</div>							
-		</div>
-
-		<div class="panel-body">
-<!-- 			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">Code</span>
-				<input class="form-control" type="text" name="item[code]" aria-describedby="basic-addon1" placeholder="Type the necessary code">
-			</div> -->
-			<div class="form-group">
-				<label>Code:</label>
-				<textarea class="form-control" name="item[code]" rows="12"><%= @item.code %></textarea>
-			</div>						
-		</div>
-
-	</div>	
-
-	<input class="btn btn-success" type="submit" value="Create Step">
-	<p><a href="/lists/<%= @list.id %>">View List</a> | <a href="/lists/<%= @list.id %>/versions/<%= @version.id %>">View Version</a> | <a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit">Edit Version</a></p>
-</form>
+</div>

@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 		@item.to_lang
 		if @item.save
 			flash[:type], flash[:message] = "success", "Item created! Great, now create as many steps as needed."
-			redirect "/lists/#{list.id}/versions/#{version.id}/items/new"
+			redirect "/lists/#{@list.id}/versions/#{@version.id}/items/new"
 		else
 			flash.now[:type], flash.now[:message] = "warning", "Hum... something went wrong, trying saving this step again."
 			# .now because there is no redirect, hence the warning would otherwise stay until next redirect (and would be seen on one page where it has no relevance)
@@ -60,10 +60,10 @@ class ItemsController < ApplicationController
 		end
 	end
 
-  	# delete
-  	delete "/lists/:list_id/versions/:version_id/items/:id/delete" do
-  		item = Item.find(params[:id])
-  		item.destroy
-  		redirect "/lists/#{params[:list_id]}/versions/#{params[:version_id]}"
-  	end	
+	# delete
+	delete "/lists/:list_id/versions/:version_id/items/:id/delete" do
+		item = Item.find(params[:id])
+		item.destroy
+		redirect "/lists/#{params[:list_id]}/versions/#{params[:version_id]}"
+	end	
 end
