@@ -42,6 +42,7 @@ class ListsController < ApplicationController
 	# show
 	get "/lists/:id" do
 		@list = List.find_by(id: params[:id])
+		@files = @list.versions.first.items.reject{ |item| item.path.empty? }
 		if @list
 			@contributors = @list.users.all
 			@versions = @list.versions.first(3)

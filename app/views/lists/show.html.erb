@@ -22,9 +22,9 @@
 		<p><%= @list.versions.first.description %></p> -->
 
 		<div class="well">
-			<h4><%= @list.versions.first.items.reject{ |item| item.path.empty? }.count %> Files Used</h4>
+			<h4><%= @files.count %> Files Used</h4>
 			<ul>
-				<% @list.versions.first.items.each do |item| %> 
+				<% @files.sort.each do |item| %> 
 					<% unless item.path.empty? %><li><%= item.path %></li><% end %>
 				<% end %>
 			</ul>

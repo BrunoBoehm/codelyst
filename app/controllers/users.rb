@@ -1,6 +1,6 @@
 require 'rack-flash'
 class UsersController < ApplicationController
-use Rack::Flash
+	use Rack::Flash
 
 	# index 
 	get "/users" do
