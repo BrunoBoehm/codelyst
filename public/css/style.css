@@ -83,3 +83,19 @@ hr.accent {
 /*    background-image: linear-gradient(to right, rgba(250, 93, 86, 0), rgba(250, 93, 86, 0.75), rgba(250, 93, 86, 0));	*/
 }
 
+span.label.label-language {
+	background-color: #fa5d56;
+}
+
+a {
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;	
+}
+
+h2.panel-title a:hover {
+	color: #fa5d56;
+	text-decoration: none;
+}

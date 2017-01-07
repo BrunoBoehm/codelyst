@@ -1,23 +1,32 @@
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
+<div class="page-header">
+	<div class="container">
+		<h1>Browse <%= @lists.count %> lists</h1>
+		<p>Code Lists are like "how to" recipes to build functionalities in code.</p>
+	</div>
+</div>
 
-		<h1>All lists (<%= @lists.count %>)</h1>
+<!-- There should be a search form or access to tags and categories -->
 
+<div class="box">
+	<div class="container">
 		<% @lists.each do |list| %>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2 class="panel-title"><a href="/lists/<%= list.id %>"><%= list.title %></a></h2>
+					<h2 class="panel-title"><a href="/lists/<%= list.id %>"><%= list.title %></a>
+						<div class="pull-right">
+							<% list.versions.first.items.collect{|item| item.language}.uniq.each do |lang| %>
+								<span class="label label-language"><%= lang %></span>
+							<% end %>					
+						</div>
+					</h2>
+<!-- <% list.users.uniq.each do |user| %>
+	<span class="label label-info"><%= user.full_name %></span>
+<% end %> -->
+					
 				</div>
 				<div class="panel-body">
-					<p>
-					<% list.users.uniq.each do |user| %>
-						<span class="label label-info"><%= user.full_name %></span>
-					<% end %>
-					</p>
+
 					<p><%= list.description %></p>
-				</div>
-				<div class="panel-footer">
-					<a href="/lists/<%= list.id %>/versions">Show all versions</a>
 				</div>
 			</div>
 		<% end %>
