@@ -34,9 +34,24 @@
 			  </div>
 			</div>
 		<% end %>
-		<p><a href="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit">Edit this version</a> | <a href="/lists/<%= @list.id %>/versions/new">Add a new version</a></p>
 	</div>
 </div>
+
+<% if logged_in? %>
+	<div class="box action">
+		<div class="container">
+			<iframe class="pull-right" src="//giphy.com/embed/4EALRFjyD5odO" width="180" height="178" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+			<h3 class="line">Want to improve this code?</h3>
+			<p>Propose an alternate version of this code, or another way to complete the same objective.</p>
+			<p>
+				<% if current_user?(@version.user) %>
+					<a class="btn btn-success" href="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit">Edit this version</a>
+				<% end %>
+				<a class="btn btn-action" href="/lists/<%= @list.id %>/versions/new">Add a new version</a>
+			</p>
+		</div>
+	</div>
+<% end %>
 
 <div class="box info-relative">
 	<div class="container">

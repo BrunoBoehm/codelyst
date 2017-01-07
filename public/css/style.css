@@ -127,3 +127,7 @@ h3.line:after {
   margin: 20px 0 30px;
   border:1px solid #fa5d56;  
 }
+
+.box .action {
+  background-color: #fcfcfc;
+}
