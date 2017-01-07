@@ -1,0 +1,7 @@
+<!-- Flash Message  -->
+<% if flash.has?(:message) %>
+	<div class="container">
+		<div class="alert alert-<%= flash[:type] %>" role="alert"><%= flash[:message] %></div>
+	</div>
+<% end %>
+<!-- Test in in controller with: flash.now[:type], flash.now[:message] = "success", "Hey Buddy Holly" -->
