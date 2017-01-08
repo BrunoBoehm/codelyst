@@ -14,9 +14,10 @@ class ItemsController < ApplicationController
 		@version = Version.find(params[:id])
 		owner = @version.user
 		if current_user?(owner)
+			# order meant to solve a bug due to @item being calculated after Item.new
+			@items = @version.items.order(:created_at)
 			@item = Item.new
 			# provides empty object for the form's values (otherwise nil will prompt error)
-			@items = @version.items
 			erb :"versions/add-items.html"
 		else
 			flash[:type], flash[:message] = "warning", "You don't have the permission to add a new item to this version, sorry!"
