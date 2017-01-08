@@ -22,11 +22,11 @@
 				<div class="panel-heading">
 					<div class="input-group">
 						<span class="input-group-addon" id="basic-addon1">Title</span>
-						<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" value="<%= @item.title %>">
+						<input class="form-control" type="text" name="item[title]" aria-describedby="basic-addon1" value="<%= h @item.title %>">
 					</div>	
 					<div class="input-group">
 						<span class="input-group-addon" id="basic-addon1">Description</span>
-						<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" value="<%= @item.description %>">
+						<input class="form-control" type="text" name="item[description]" aria-describedby="basic-addon1" value="<%= h @item.description %>">
 					</div>	
 					<div class="input-group">
 						<span class="input-group-addon" id="basic-addon1">app_name/</span>
