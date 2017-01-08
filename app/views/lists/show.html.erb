@@ -24,7 +24,7 @@
 		<div class="well">
 			<h4><%= @files.count %> Files Used</h4>
 			<ul>
-				<% @files.sort.each do |item| %> 
+				<% @files.each do |item| %> 
 					<% unless item.path.empty? %><li><%= item.path %></li><% end %>
 				<% end %>
 			</ul>
