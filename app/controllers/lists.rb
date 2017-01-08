@@ -53,6 +53,18 @@ class ListsController < ApplicationController
 		end
 	end
 
+	# update
+	patch "/lists/:id/edit" do
+		list = List.find(params[:id])
+		if list.update(params[:list])
+			flash[:type], flash[:message] = "success", "List edited successfully, see for yourself!"
+			redirect to "/lists/#{params[:id]}"			
+		else
+			flash[:type], flash[:message] = "warning", "Sorry... Could not edit this list, try again please."
+			redirect to "/lists/#{params[:id]}"
+		end
+	end
+
 	# index 1 list's versions
 	get "/lists/:id/versions" do
 		@list = List.find(params[:id])
