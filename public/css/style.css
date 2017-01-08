@@ -99,10 +99,18 @@ a {
   transition:.5s;	
 }
 
+h3.panel-title {
+  font-size: 20px;
+}
+
 h2.panel-title a:hover {
 	color: #fa5d56;
 	text-decoration: none;
 }
+
+.panel {
+  margin-bottom: 40px;
+}    
 
 .btn-action {
     color: #fff;
