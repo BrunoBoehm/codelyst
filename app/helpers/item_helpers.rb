@@ -8,20 +8,23 @@ module Sinatra
   module Language
   	def lang(item)
   		if item.language
-	  	  case item.language
-	  		when "erb"
-	  			"html"
-	  		when "js"
-	  			"javascript"
-	  		when "html"
-	  			"html"
-	  		when "rb"	
-	  			"ruby"	
-	  		end  			
-  		else
+	  	  case item.language.downcase
+  	  		when "erb"
+  	  			"html"
+  	  		when "js"
+  	  			"javascript"
+  	  		when "html"
+  	  			"html"
+  	  		when "rb"	
+  	  			"ruby"	 			
+    		  when "gemfile"
+            "ruby"
+          when "console"
+            "bash"
+        end
+      else   
   			"none"
   		end
-
   	end
   end
 
