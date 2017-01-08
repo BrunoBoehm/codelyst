@@ -24,12 +24,14 @@
 				<div class="panel-body">
 					<p><%= list.description %></p>
 				</div>
-				<div class="panel-footer">
-					<%= @user.name %>'s versions: 
-					<% list.versions.where(user_id: @user.id).each_with_index do |version, index| %>
-						<a href="/lists/<%= list.id %>/versions/<%= version.id %>"><%= version.title %><%= index > 0 ? ", " : "" %></a>
-					<% end %>
-				</div>
+				<% if list.versions.count > 1 %>
+					<div class="panel-footer">
+						<%= @user.name %>'s versions: 
+						<% list.versions.where(user_id: @user.id).each_with_index do |version, index| %>
+							<a href="/lists/<%= list.id %>/versions/<%= version.id %>"><%= version.title %><%= index > 0 ? ", " : "" %></a>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
 		<% end %>
 	</div>
