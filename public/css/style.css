@@ -92,11 +92,17 @@ span.label.label-language {
 }
 
 a {
+  color: #fa5d56;
   -o-transition:.5s;
   -ms-transition:.5s;
   -moz-transition:.5s;
   -webkit-transition:.5s;
   transition:.5s;	
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 h3.panel-title {
