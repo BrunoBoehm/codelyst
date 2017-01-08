@@ -18,7 +18,7 @@
 
 		<h4>Files Used</h4>
 		<ul class="list-group">
-			<% @version.items.reject{|item| item.path.blank? }.each do |item| %> 
+			<% @version.items.order(:path).reject{ |item| item.path.blank? }.each do |item| %> 
 				<li class="list-group-item"><%= item.path %></li>
 			<% end %>
 		</ul>
