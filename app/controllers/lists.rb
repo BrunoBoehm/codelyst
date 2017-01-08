@@ -42,8 +42,9 @@ class ListsController < ApplicationController
 	# show
 	get "/lists/:id" do
 		@list = List.find_by(id: params[:id])
-		@files = @list.versions.first.items.order(:path).reject{ |item| item.path.empty? }
+		@files = @list.versions.first.items.order(:path).reject{ |item| item.path.empty? || item.path.downcase == "console" }.uniq{ |file| file.path }
 		if @list
+			@first_version_items = @list.versions.first.items.order(:created_at)
 			@contributors = @list.users.all
 			@versions = @list.versions.first(3)
 			erb :"lists/show.html"

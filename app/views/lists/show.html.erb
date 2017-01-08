@@ -25,12 +25,12 @@
 			<h4><%= @files.count %> Files Used</h4>
 			<ul>
 				<% @files.each do |item| %> 
-					<% unless item.path.empty? %><li><%= item.path %></li><% end %>
+					<li><%= item.path %></li>
 				<% end %>
 			</ul>
 		</div>
 		<h3 class="line"><%= @list.versions.first.items.count %> Steps to complete</h3>
-		<% @list.versions.first.items.each_with_index do |item, index| %>
+		<% @first_version_items.each_with_index do |item, index| %>
 			<div class="panel panel-default">
 			  <div class="panel-heading">
 			  	<h3 class="panel-title"><%= index+1 %>. <%= item.title %> <% if lang(item) != "none" %><span class="label label-primary pull-right"><%= lang(item) %></span><% end %></h3>

@@ -26,6 +26,9 @@ class VersionsController < ApplicationController
 	get "/lists/:list_id/versions/:id" do
 		@list = List.find(params[:list_id])
 		@version = Version.find(params[:id])
+		@files = @version.items.order(:path).reject{ |item| item.path.empty? || item.path.downcase == "console" }.uniq{ |file| file.path }
+		@items = @version.items.order(:created_at)
+		# order will have to be changed when use of jquery sortable, or any other order method
 		erb :"versions/show.html"
 	end
 
@@ -38,6 +41,7 @@ class VersionsController < ApplicationController
 	# end
 
 	### alternative: edit the first version of a list by adding items one at a time
+	# action and vanity URL route used only for the first version of a list
 	get "/lists/:id/add-items" do
 		@list = List.find_by(id: params[:id])
 		@version = @list.versions.first
