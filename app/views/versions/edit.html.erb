@@ -9,22 +9,20 @@
 <div class="box">
 	<div class="container">
 
-		<% unless @version == @list.versions.first %>
 		<form action="/lists/<%= @list.id %>/versions/<%= @version.id %>/edit" method="POST" >
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Title</span>
-				<input type="text" name="version[title]" class="form-control" value="<%= @version.title %>">
+				<input type="text" name="version[title]" class="form-control" value="<%= h @version.title %>">
 			</div>
 
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Description</span>
-				<input type="text" name="version[description]" class="form-control" value="<%= @version.description %>">
+				<input type="text" name="version[description]" class="form-control" value="<%= h @version.description %>">
 			</div>
 				
 			<input type="hidden" name="_method" value="PATCH">
 			<input type="submit" name="Update Version" class="btn btn-success">
 		</form>	
-		<% end %>
 
 		<hr>
 
