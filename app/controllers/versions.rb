@@ -88,7 +88,7 @@ class VersionsController < ApplicationController
 		owner = @version.user
 		if current_user?(owner)
 			@list = List.find(params[:list_id])
-    		@items = @version.items.all
+    		@items = @version.items.all.order(:created_at)
     		erb :"versions/edit.html"
 		else
 			redirect "/lists"

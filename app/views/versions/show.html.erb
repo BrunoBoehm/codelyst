@@ -34,7 +34,7 @@
 			  </div>
 			  <div class="panel-body">
 			  	<p><%= item.description %></p>
-			    <p><pre><code class="language-html"><%= h item.code %></code></pre></p>
+			    <p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
 			  </div>
 			</div>
 		<% end %>
