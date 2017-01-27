@@ -21,6 +21,14 @@ module Sinatra
             "ruby"
           when "console"
             "bash"
+          when "terminal"
+            "bash"
+          when "php"
+            "php" 
+          when "css"
+            "css"
+          when "scss"
+            "css"       
         end
       else   
   			"none"

@@ -78,10 +78,10 @@
 					</div>	
 					<div class="input-group">
 						<span class="input-group-addon" id="basic-addon1">Description</span>
-						<textarea class="form-control" name="item[description]" placeholder="What is this step's objective?" rows="3"><%= @item.description %></textarea>
+						<textarea class="form-control editor" name="item[description]" placeholder="What is this step's objective?" rows="10"><%= @item.description %></textarea>
 					</div>	
 					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1">app_name/</span>
+						<span class="input-group-addon" id="basic-addon1">root/</span>
 						<input class="form-control" type="text" name="item[path]" aria-describedby="basic-addon1" placeholder="Type in the path of this code's file in the project's directory" value="<%= @item.path %>">
 					</div>							
 				</div>
