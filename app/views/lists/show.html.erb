@@ -20,18 +20,38 @@
 		<br> -->
 
 		<!-- should be replaced by 3 first versions -->
-<!-- 		<h2><%= @list.versions.first.title %></h2>
-		<p><%= @list.versions.first.description %></p> -->
+<!-- 		<h2><%= @first_version.title %></h2>
+		<p><%= @first_version.description %></p> -->
 
 		<div class="well">
-			<h4><%= @files.count %> Files Used</h4>
-			<ul>
-				<% @files.each do |item| %> 
-					<li><%= item.path %></li>
-				<% end %>
-			</ul>
+			<div class="row">
+				<div class="col-md-4">
+					<h4><%= @files.count %> Files Used</h4>
+					<ul>
+						<% @files.each do |item| %> 
+							<li><%= item.path %></li>
+						<% end %>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h4><%= @first_version.all_code_snippets.count %> Cool Code Snippets</h4>
+					<ul>
+						<% @first_version.all_code_snippets.each do |code| %> 
+							<li><%= code %></li>
+						<% end %>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h4><%= @first_version.all_links.count %> Resources</h4>
+					<ul>
+						<% @first_version.all_links.each do |link| %> 
+							<li><%= link %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<h3 class="line"><%= @list.versions.first.items.count %> Steps to complete</h3>
+		<h3 class="line"><%= @first_version.items.count %> Steps to complete</h3>
 		<% @first_version_items.each_with_index do |item, index| %>
 			<div class="panel panel-default">
 			  <div class="panel-heading">
@@ -45,8 +65,8 @@
 			</div>
 		<% end %>
 
-		<% if current_user?(@list.versions.first.user) %>
-			<p><a href="/lists/<%= @list.id %>/versions/<%= @list.versions.first.id %>/edit">Edit this version</a></p>
+		<% if current_user?(@first_version.user) %>
+			<p><a href="/lists/<%= @list.id %>/versions/<%= @first_version.id %>/edit">Edit this version</a></p>
 		<% end %>
 	</div>
 </div>

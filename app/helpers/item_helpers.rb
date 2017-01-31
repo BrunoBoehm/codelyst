@@ -36,5 +36,6 @@ module Sinatra
   	end
   end
 
+
   helpers HTMLEscapeHelper, Language
 end

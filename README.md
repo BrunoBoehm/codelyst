@@ -12,4 +12,5 @@ This app is meant to let users
 4. Migrate the database
 5. Run the server by typing `shotgun` in your terminal, to connect to localhost: you can now use the app
 6. Create an account, it is necessary to create a list
+7. Run the console by running `rake console`
 

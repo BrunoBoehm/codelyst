@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 	get "/users/:id" do
 		@user = User.find(params[:id])
 		@versions = @user.versions
-		@lists = @versions.collect{|version| version.list}.uniq
+		@lists = @versions.reject{|version| version.list.nil?}.uniq
 		erb :"users/show.html"
 	end
 
