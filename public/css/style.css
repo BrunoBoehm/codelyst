@@ -153,3 +153,16 @@ div.box.action {
 .alert {
   margin-top: 20px;
 }
+
+.well {
+  overflow-wrap: break-word;
+}
+
+.contrast {
+  background-color: #272822;
+}
+
+.contrast h3 {
+  color: white;
+}
+

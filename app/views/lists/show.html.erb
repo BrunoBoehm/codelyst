@@ -25,7 +25,7 @@
 	
 		<h4><%= @first_version.all_code_snippets.count %> Code Snippets</h4>
 		<div class="row">
-			<% @first_version.all_code_snippets.each do |code| %> 
+			<% @first_version.all_code_snippets.sort_by(&:downcase).each do |code| %> 
 			<div class="col-md-4">
 				<div class="well well-sm text-center"><%= code %></div>
 			</div>	
@@ -54,12 +54,16 @@
 		<% end %>
 
 		<% if current_user?(@first_version.user) %>
-			<p><a href="/lists/<%= @list.id %>/versions/<%= @first_version.id %>/edit">Edit this version</a></p>
+			<nav aria-label="...">
+			  <ul class="pager">
+			    <li><a href="/lists/<%= @list.id %>/versions/<%= @first_version.id %>/edit">Edit this version</a></li>
+			  </ul>
+			</nav>
 		<% end %>
 	</div>
 </div>
 
-<div class="box top-separator">
+<div class="box contrast">
 	<div class="container">		
 		<h3 class="line"><%= @first_version.all_links.count %> Resources</h3>	
 		<div class="row">
