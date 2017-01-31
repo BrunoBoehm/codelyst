@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
 	helpers Sinatra::SessionHelpers
 	helpers Sinatra::HTMLEscapeHelper
 	helpers Sinatra::Language
+	helpers Sinatra::ResourceHelper
 
 	configure do
 	  enable :sessions	
