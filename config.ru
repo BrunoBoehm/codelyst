@@ -8,6 +8,8 @@ use Rack::MethodOverride
 
 use UsersController
 use SessionsController
+use ReadingsController
+use SnippetsController
 use ItemsController
 use ListsController
 use VersionsController

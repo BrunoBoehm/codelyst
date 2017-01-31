@@ -1,0 +1,17 @@
+<div class="page-header">
+	<div class="container">
+		<h1><%= @readings.count %> Cool Reads</h1>
+		<p>A list of selected resources, used as reference links in all of the lists so far.</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="container">
+		<div class="list-group text-center">
+			<% @readings.sort_by!{ |m| full_url(m) }.each do |reading| %>
+			  <li class="list-group-item"><h4><%= reading %></h4><%= full_url(reading) %></li>
+			<% end %>
+		</div>
+	</div>
+</div>		
+

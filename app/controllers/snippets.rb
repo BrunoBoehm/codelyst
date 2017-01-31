@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SnippetsController < ApplicationController
 
 	get "/snippets" do
 		versions = Version.all
