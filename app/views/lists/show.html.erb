@@ -10,47 +10,33 @@
 <% if @list.versions.count > 0 %>
 <div class="box">
 	<div class="container">
-		<!-- begin conditional if version count > 0 -->
 
-		<!-- <ul class="nav nav-pills nav-justified">
-			<% @versions.each_with_index do |version, index| %>	
-			  <li role="presentation" <%= 'class="active"' if index == 0 %>><a href="#">Version <%= index +1 %></a></li>
-		  	<% end %>
-		</ul>
-		<br> -->
-
-		<!-- should be replaced by 3 first versions -->
-<!-- 		<h2><%= @first_version.title %></h2>
-		<p><%= @first_version.description %></p> -->
-
-		<div class="well">
-			<div class="row">
-				<div class="col-md-4">
-					<h4><%= @files.count %> Files Used</h4>
-					<ul>
-						<% @files.each do |item| %> 
-							<li><%= item.path %></li>
-						<% end %>
-					</ul>
-				</div>
-				<div class="col-md-4">
-					<h4><%= @first_version.all_code_snippets.count %> Cool Code Snippets</h4>
-					<ul>
-						<% @first_version.all_code_snippets.each do |code| %> 
-							<li><%= code %></li>
-						<% end %>
-					</ul>
-				</div>
-				<div class="col-md-4">
-					<h4><%= @first_version.all_links.count %> Resources</h4>
-					<ul>
-						<% @first_version.all_links.each do |link| %> 
-							<li><%= link %>, on <%= url_domain(link) %></li>
-						<% end %>
-					</ul>
+		<h3 class="line">In short</h3>
+		<h4><%= @files.count %> Files Used</h4>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="well">
+					<% @files.each do |item| %> 
+						<%= item.path %><br>
+					<% end %>
 				</div>
 			</div>
-		</div>
+		</div>	
+	
+		<h4><%= @first_version.all_code_snippets.count %> Code Snippets</h4>
+		<div class="row">
+			<% @first_version.all_code_snippets.each do |code| %> 
+			<div class="col-md-4">
+				<div class="well well-sm text-center"><%= code %></div>
+			</div>	
+			<% end %>
+		</div>	
+
+	</div>
+</div>
+
+<div class="box">
+	<div class="container">
 		<h3 class="line"><%= @first_version.items.count %> Steps to complete</h3>
 		<% @first_version_items.each_with_index do |item, index| %>
 			<div class="panel panel-default">
@@ -60,7 +46,9 @@
 			  </div>
 			  <div class="panel-body">
 			  	<p><%= item.description %></p>
-			    <p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
+			  	<% unless item.code.empty? %>
+			    	<p><pre><code class="language-<%= lang(item) %>"><%= h item.code %></code></pre></p>
+			    <% end %>	
 			  </div>
 			</div>
 		<% end %>
@@ -70,7 +58,20 @@
 		<% end %>
 	</div>
 </div>
-<% end %> <!-- end conditional if version count > 0 -->
+
+<div class="box top-separator">
+	<div class="container">		
+		<h3 class="line"><%= @first_version.all_links.count %> Resources</h3>	
+		<div class="row">
+			<% @first_version.all_links.each_with_index do |link, index| %> 
+			<div class="col-md-4">
+				<div class="well well-sm"><%= link %><br><%= truncate(url_domain(link), 90) %></div>
+			</div>	
+			<% end %>
+		</div>		
+	</div>
+</div>
+<% end %>
 
 <div class="box info-relative">
 	<div class="container">

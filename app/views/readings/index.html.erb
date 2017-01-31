@@ -9,9 +9,8 @@
 	<div class="container">
 		<div class="list-group text-center">
 			<% @readings.sort_by!{ |m| full_url(m) }.each do |reading| %>
-			  <li class="list-group-item"><h4><%= reading %></h4><%= full_url(reading) %></li>
+			  <li class="list-group-item"><h4><%= reading %></h4><%= truncate( full_url(reading) ) %></li>
 			<% end %>
 		</div>
 	</div>
-</div>		
-
+</div>
