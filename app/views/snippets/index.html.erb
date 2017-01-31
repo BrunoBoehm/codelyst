@@ -1,0 +1,16 @@
+<div class="page-header">
+	<div class="container">
+		<h1><%= @snippets.count %> Code Snippets</h1>
+		<p>A list of cool code bits used in all of the lists so far.</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="container">
+		<ol>
+		<% @snippets.sort_by!{ |m| m.length }.each do |snippet| %>
+			<li><%= snippet %></li>
+		<% end %>
+		</ol>
+	</div>
+</div>		
