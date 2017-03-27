@@ -16,7 +16,7 @@ class VersionsController < ApplicationController
 	get "/lists/:id/versions/new" do
 		if logged_in?
 			@list = List.find(params[:id])
-			erb :"versions/new.html"			
+			erb :"versions/new.html"
 		else
 			redirect "/lists"
 		end
@@ -32,13 +32,13 @@ class VersionsController < ApplicationController
 		erb :"versions/show.html"
 	end
 
-	### alternative: edit the first version of a list by adding items in bulk
-	# get "/lists/:id/create" do
-	# 	@list = List.find_by(id: params[:id])
-	# 	@version = @list.versions.first
-	# 	@items = 10.times.collect{@version.items.build}
-	# 	erb :"versions/create.html"
-	# end
+	######### alternative: edit the first version of a list by adding items in bulk
+	get "/lists/:id/create" do
+		@list = List.find_by(id: params[:id])
+		@version = @list.versions.first
+		@items = 10.times.collect{@version.items.build}
+		erb :"versions/create.html"
+	end
 
 	### alternative: edit the first version of a list by adding items one at a time
 	# action and vanity URL route used only for the first version of a list
@@ -49,15 +49,16 @@ class VersionsController < ApplicationController
 		erb :"versions/add-items.html"
 	end
 
-	# create a list (create the first version of the list and nested items)
-	# post "/lists/:id" do
-	# 	list = List.find(params[:id])
-	# 	version = list.versions.first
-	# 	params[:version][:item].each do |params|
-	# 		version.items.create(params) unless params[:title].empty?
-	# 	end
-	# 	redirect "/lists/#{list.id}"
-	# end
+	######## create a list (create the first version of the list and nested items)
+	post "/lists/:id/bulk" do
+		list = List.find(params[:id])
+		version = list.versions.first
+		binding.pry
+		params[:version][:item].each do |params|
+			version.items.create(params) unless params[:title].empty?
+		end
+		redirect "/lists/#{list.id}"
+	end
 
 	# create the first item of a list
 	post "/list/:id" do
@@ -68,7 +69,7 @@ class VersionsController < ApplicationController
 			redirect "/lists/#{list.id}"
 		else
 			erb :"versions/add-items.html"
-		end	
+		end
 	end
 
 	post "/lists/:id/versions/new" do
@@ -97,7 +98,7 @@ class VersionsController < ApplicationController
 
   	# update a version
   	patch "/lists/:list_id/versions/:id/edit" do
-    	version = Version.find(params[:id]) 
+    	version = Version.find(params[:id])
     	owner = version.user
     	if current_user?(owner) && version.update(params[:version])
     		redirect to "/lists/#{params[:list_id]}/versions/#{params[:id]}"

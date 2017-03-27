@@ -1,19 +1,35 @@
-<div class="alert alert-success" role="alert">
-	<p>Congratulation you just created a lyst. What's next?</p>
-	<ul>
-		<li>Below, you'll be able to propose your solution</li>
-		<li>Other users will be able to propose other versions</li>
-		<li>And of course don't hesitate to propose alternative versions too.</li>
-	</ul>
+<div class="page-header">
+	<div class="container">
+		<p>Add steps in bulk to:</p>
+		<h1><%= @list.title %></a></h1>
+		<p><%= @list.description %></p>
+	</div>
 </div>
 
-<h1>Title: <%= @list.title %></h1>
-<p>Description: <%= @list.description %></p>
+<%= erb :"shared/flash.html" %>
 
-<form action="/lists/<%= @list.id %>" method="POST">
-	<% @items.each do |item|%>
-		<%= erb :"versions/partials/items.html" %>
-	<% end %>
+<div class="box">
+	<div class="container">
 
-	<input class="btn btn-success" type="submit" value="Create Steps">
-</form>
+		<div class="alert alert-success" role="alert">
+			<p>Congratulation you just created a lyst. What's next?</p>
+			<ul>
+				<li>Below, you'll be able to propose your solution</li>
+				<li>Other users will be able to propose other versions</li>
+				<li>And of course don't hesitate to propose alternative versions too.</li>
+			</ul>
+		</div>
+
+		<h1>Title: <%= @list.title %></h1>
+		<p>Description: <%= @list.description %></p>
+
+		<form action="/lists/<%= @list.id %>/bulk" method="POST">
+			<% @items.each do |item|%>
+				<%= erb :"versions/partials/items.html" %>
+			<% end %>
+
+			<input class="btn btn-success" type="submit" value="Create Steps">
+		</form>
+
+	</div>
+</div>

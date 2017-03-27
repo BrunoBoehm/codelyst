@@ -59,7 +59,7 @@ class ListsController < ApplicationController
 		list = List.find(params[:id])
 		if list.update(params[:list])
 			flash[:type], flash[:message] = "success", "List edited successfully, see for yourself!"
-			redirect to "/lists/#{params[:id]}"			
+			redirect to "/lists/#{params[:id]}"
 		else
 			flash[:type], flash[:message] = "warning", "Sorry... Could not edit this list, try again please."
 			redirect to "/lists/#{params[:id]}"
@@ -70,6 +70,6 @@ class ListsController < ApplicationController
 	get "/lists/:id/versions" do
 		@list = List.find(params[:id])
 		@versions = @list.versions.all
-		erb :"lists/versions.html"		
-	end	
+		erb :"lists/versions.html"
+	end
 end
