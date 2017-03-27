@@ -2,24 +2,26 @@ require 'rack-flash'
 class UsersController < ApplicationController
 	use Rack::Flash
 
-	# index 
+	# index
 	get "/users" do
 		@users = User.all
 		erb :"users/index.html"
 	end
 
 	# new
-	get "/register" do
+	get "/users/new" do
+		@user = User.new
 		erb :"users/new.html"
 	end
 
 	# create
-	post "/users/new" do
-		user = User.new(params[:user])
-		if user.save
-			session[:user_id] = user.id
+	post "/users" do
+		@user = User.new(params[:user])
+		if @user.save
+			session[:user_id] = @user.id
 			redirect to "/users"
 		else
+			flash[:type], flash[:message] = "warning", "There was an issue with your sign up. #{@user.errors.full_messages.join(', ')}"
 			erb :"users/new.html"
 		end
 	end
